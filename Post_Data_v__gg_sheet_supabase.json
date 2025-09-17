@@ -1,0 +1,736 @@
+{
+  "name": "Post Data về gg sheet supabase",
+  "nodes": [
+    {
+      "parameters": {
+        "events": [
+          "update"
+        ]
+      },
+      "id": "337e64a2-e554-48c8-b651-198556c52768",
+      "name": "n8n Trigger",
+      "type": "n8n-nodes-base.n8nTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://34.142.138.165:5678/webhook/7670aa98-da0d-4752-ab97-e60f0b0fee24",
+        "options": {}
+      },
+      "id": "45bf5e2c-5adc-4f73-b814-2bd85c22d0a5",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1820,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "id": "6646bb13-7f53-4ab9-a748-7153519d85d5",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1460,
+        340
+      ],
+      "webhookId": "7e3e3427-db6c-4966-b614-da40c29c24c2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Gộp toàn bộ dữ liệu từ items vào một object JSON duy nhất\nreturn [{\n    mergedData: items.map(item => item.json)\n}];\n"
+      },
+      "id": "9788f5bc-a517-4b83-a1ff-7e4e37034a26",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1620,
+        340
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "dc39816d-7580-4714-bf99-fa914a48f0dc",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        800,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-1002318065421",
+        "text": "Lỗi  xử lý luồng kéo data form off  từ nocodb về gg sheet !!! ",
+        "additionalFields": {}
+      },
+      "id": "5038bf77-838c-4c13-8a62-271a15b1e9d2",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        960,
+        160
+      ],
+      "webhookId": "e66ae912-ae41-4305-ae21-efcc81c331ce",
+      "credentials": {
+        "telegramApi": {
+          "id": "2EcZ4GHvP7A5GK37",
+          "name": "Báo lỗi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1qSI9xi4mMzSe8Kau-wyrw9EvKolqx7djQ_z9E8lCePQ/edit?gid=1046593970#gid=1046593970",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1046593970,
+          "mode": "list",
+          "cachedResultName": "Quantd",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1qSI9xi4mMzSe8Kau-wyrw9EvKolqx7djQ_z9E8lCePQ/edit#gid=1046593970"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "note2": "={{ $json.ngayNghi }}",
+            "Link": "={{ $json.linkTicket }}",
+            "SDT": "={{ $json.sdt }}",
+            "Tên": "={{ $json.ten }}",
+            "Lý do": "={{ $json.lyDo }}",
+            "Phân loại": "={{ $json.phanLoai }}",
+            "Ngày điền form": "={{ $json.ngayDienForm }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "note",
+              "displayName": "note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "note2",
+              "displayName": "note2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IDticket",
+              "displayName": "IDticket",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày điền form",
+              "displayName": "Ngày điền form",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phân loại",
+              "displayName": "Phân loại",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SDT",
+              "displayName": "SDT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên",
+              "displayName": "Tên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lý do",
+              "displayName": "Lý do",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày nghỉ 1",
+              "displayName": "Ngày nghỉ 1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày nghỉ 2",
+              "displayName": "Ngày nghỉ 2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày nghỉ 3",
+              "displayName": "Ngày nghỉ 3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày nghỉ 4",
+              "displayName": "Ngày nghỉ 4",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày nghỉ 5",
+              "displayName": "Ngày nghỉ 5",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày nghỉ 6",
+              "displayName": "Ngày nghỉ 6",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày nghỉ 7",
+              "displayName": "Ngày nghỉ 7",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái ticket",
+              "displayName": "Trạng thái ticket",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "check",
+              "displayName": "check",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái xử lý",
+              "displayName": "Trạng thái xử lý",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã BOS",
+              "displayName": "Mã BOS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã HV",
+              "displayName": "Mã HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lịch học",
+              "displayName": "Lịch học",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã lớp",
+              "displayName": "Mã lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CTV xử lý BOS",
+              "displayName": "CTV xử lý BOS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CheckXuLy",
+              "displayName": "CheckXuLy",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CheckN8N",
+              "displayName": "CheckN8N",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check lấy thông tin",
+              "displayName": "Check lấy thông tin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "466be50a-f22e-41cf-bb39-53382bb2a792",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        960,
+        340
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "bwJz9omcnkOpxgAL",
+          "name": "VHC"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "id": "965c4554-edec-4bff-aba9-92e344ee7591",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1120,
+        160
+      ],
+      "webhookId": "aa3d7218-7b87-4d0e-998c-f3d3de64494d"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:5678/webhook/7670aa98-da0d-4752-ab97-e60f0b0fee24",
+        "options": {}
+      },
+      "id": "38062ac2-3504-446e-99e9-7fa1af2a6f10",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1300,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1bac93e5-eefe-469d-8698-8ccb9b50bc07",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "4020743a-1c60-48d8-97a5-85d8ce1190b1",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        800,
+        540
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "884a034e-f346-4ea9-ae8f-8e6cd9cfe27c",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1300,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "database_form_off",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "checkCopyGGshet",
+              "condition": "eq",
+              "keyValue": "Chưa xử lý"
+            }
+          ]
+        }
+      },
+      "id": "97c12d6d-a972-4c71-9e60-bc6246e00035",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        800,
+        340
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "TtT6sD1DfiZMQic2",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "database_form_off",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Supabase').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "checkCopyGGshet",
+              "fieldValue": "Đã xử lý"
+            }
+          ]
+        }
+      },
+      "id": "c767880d-7895-4c05-bbd9-147f250d10d7",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        340
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "TtT6sD1DfiZMQic2",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "7670aa98-da0d-4752-ab97-e60f0b0fee24",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        580,
+        420
+      ],
+      "id": "c6cf333d-6bac-4d43-8794-3b5cd02293d3",
+      "name": "Webhook",
+      "webhookId": "7670aa98-da0d-4752-ab97-e60f0b0fee24"
+    },
+    {
+      "parameters": {
+        "chatId": "-1002318065421",
+        "text": "Đã chạy lại chương trình kéo data formoff",
+        "additionalFields": {}
+      },
+      "id": "c05615fb-c725-4c4a-b757-be64d86b9bed",
+      "name": "Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1520,
+        160
+      ],
+      "webhookId": "e66ae912-ae41-4305-ae21-efcc81c331ce",
+      "credentials": {
+        "telegramApi": {
+          "id": "2EcZ4GHvP7A5GK37",
+          "name": "Báo lỗi"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "n8n Trigger": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": 1800
+  },
+  "versionId": "21c2a7e7-0e05-4c5f-83e3-d82e78b97e3a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "34d6c8416ab990d4be347bd9d4963440b5ae40b1d8168ac2eb8d09f6a7ac95ce"
+  },
+  "id": "zRpoUjuMZFNXRWgr",
+  "tags": []
+}

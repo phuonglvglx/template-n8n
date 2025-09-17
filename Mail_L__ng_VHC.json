@@ -1,0 +1,326 @@
+{
+  "name": "Mail_Lương_VHC",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/11-E1yn7mu5ffC4OmixV6qmYsMUS-SsVDoMc_8DTPnik/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 275716842,
+          "mode": "list",
+          "cachedResultName": "Template tháng 6",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11-E1yn7mu5ffC4OmixV6qmYsMUS-SsVDoMc_8DTPnik/edit#gid=275716842"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Check",
+              "lookupValue": "ok"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "31998598-68c5-402f-a0d1-571f7eadab5d",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1380,
+        520
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Email CTV'] }}",
+        "subject": "=ICC-VHC GỬI PHIẾU LƯƠNG CTV  {{ $json['Tháng Năm'] }}",
+        "message": "=<html>\n<span id=\"docs-internal-guid-0dd09194-7fff-a44a-5a7d-d47c6ba48cca\"><div dir=\"ltr\" style=\"margin-left:-1.5pt;\" align=\"left\"></div><span id=\"docs-internal-guid-c52f365f-7fff-d66e-1104-37a8ced7de60\"><div dir=\"ltr\" style=\"margin-left:-1.5pt;\" align=\"left\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"680\"></colgroup><tbody><tr style=\"height:616.5pt\"><td style=\"border-left:solid #f8f9fa 1pt;border-right:solid #f8f9fa 1pt;border-bottom:solid #ffffff 1pt;border-top:solid #f8f9fa 1pt;vertical-align:top;background-color:#ebf1fb;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 16pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"><span style=\"border:none;display:inline-block;overflow:hidden;width:248px;height:37px;\"><img src=\"https://lh7-rt.googleusercontent.com/docsz/AD_4nXdgUXSbk8Jo9_aboP798hJx7m3XWLQcm4jlYvh-nD1WRhopPjtG7qiHqypWpQoqCZPKb0BUtvWKzS7UjXHdvYrcSQOY2h5cPnnwl8jmpoBi9mGFdy5doShRl6fm1sRRA54k7H64?key=s2dWUkbAt6yA8yNhCKIv6WOw\" width=\"248\" height=\"37\" style=\"margin-left:0px;margin-top:0px;\"></span></span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 16pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"><span style=\"border:none;display:inline-block;overflow:hidden;width:147px;height:24px;\"><img src=\"https://lh7-rt.googleusercontent.com/docsz/AD_4nXcM92oQyb2AOc37GAicn0DnxHhTfwOM59Gwu_5pH7ARq6Bf9QGBEtrDqKmWzuQi96iqzau4d-ru829tnevQJ-ORGnVrPDiEhYqPvk-Q_e15FaVmnSWhpica9A3SEBnIZ88qT4Oq?key=s2dWUkbAt6yA8yNhCKIv6WOw\" width=\"147\" height=\"24\" style=\"margin-left:0px;margin-top:0px;\"></span></span></p><br><p dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 13pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Bộ phận ICC-VHC gửi Anh/Chị Phiếu lương tháng {{ $json['Tháng Năm'] }}</p><p dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 13pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Nếu Anh/Chị có bất kỳ thắc mắc gì về thu nhập, vui lòng liên hệ </span><a href=\"mailto:hangtt7@ican.vn\" style=\"text-decoration-line: none;\"><span style=\"font-size: 13pt; font-family: &quot;Times New Roman&quot;, serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">hangtt7@ican.vn</span></a><span style=\"font-size: 13pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> không quá 03 ngày kể từ ngày nhận được phiếu này.&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 16pt; font-family: &quot;Times New Roman&quot;, serif; color: rgb(17, 85, 204); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">PHIẾU LƯƠNG THÁNG {{ $json['Tháng Năm'] }}</span></p><br><div dir=\"ltr\" style=\"margin-left:20.25pt;\" align=\"left\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"354\"><col width=\"269\"></colgroup><tbody><tr style=\"height:0pt\"><td style=\"border-left:solid #4a86e8 1pt;border-right:solid #4a86e8 1pt;border-bottom:solid #4a86e8 1pt;border-top:solid #4a86e8 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Họ và Tên: </span><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Họ và Tên'] }}</span></p></td><td style=\"border-left:solid #4a86e8 1pt;border-right:solid #4a86e8 1pt;border-bottom:solid #4a86e8 1pt;border-top:solid #4a86e8 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Mã cộng tác viên: </span><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Mã nhân viên'] }}</span></p></td></tr><tr style=\"height:21pt\"><td colspan=\"2\" style=\"border-left:solid #4a86e8 1pt;border-right:solid #4a86e8 1pt;border-bottom:solid #4a86e8 1pt;border-top:solid #4a86e8 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Bộ phận làm việc: </span><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Bộ phận làm việc'] }}</span></p></td></tr></tbody></table></div><br><br><div dir=\"ltr\" style=\"margin-left:19.5pt;\" align=\"left\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"415\"><col width=\"210\"></colgroup><tbody><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Tổng giờ làm việc:</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Tổng giờ làm việc'] }} giờ</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Thưởng:</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Thưởng'] }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Phạt:</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Phạt'] }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Mức lương cơ bản:</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Mức lương cơ bản'] }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Tổng thu nhập trước khi khấu trừ Thuế TNCN:</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Tổng thu nhập trước khi khấu trừ Thuế TNCN'] }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Thuế TNCN:</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Thuế TNCN'] }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Tổng thu nhập sau khi khấu trừ Thuế TNCN:</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Tổng thu nhập sau khi khấu trừ Thuế TNCN'] }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; color: rgb(198, 89, 17); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">LƯƠNG THỰC LĨNH:</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; color: rgb(198, 89, 17); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['LƯƠNG THỰC LĨNH'] }}</span></p></td></tr></tbody></table></div><br><br><p dir=\"ltr\" style=\"line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Ghi chú:</span></p><p dir=\"ltr\" style=\"line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Công ty sẽ tạm khấu trừ thuế TNCN mà người lao động phải nộp từ nguồn thu nhập hàng tháng để nộp cho cơ quan Thuế.</span></p><p dir=\"ltr\" style=\"line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Người lao động cần quyết toán lại khoản thuế này với Cục Thuế vào cuối mỗi năm theo luật thuế hiện hành.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.7999999999999998;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: &quot;Times New Roman&quot;, serif; background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Anh/Chị có trách nhiệm tự bảo mật thông tin về mức thu nhập của mình, không tiết lộ thông tin về thu nhập cũng như tìm hiểu mức thu nhập của người khác. Nếu cố tình vi phạm sẽ bị xử lý theo quy định của Công ty.</span></p></td></tr></tbody></table></div><br><br></span></span>\n</html>",
+        "options": {
+          "ccList": "hangtt7@ican.vn",
+          "senderName": "Galaxy Education"
+        }
+      },
+      "id": "e4f3b9de-137d-4434-9245-ed9a42fd4740",
+      "name": "Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1600,
+        520
+      ],
+      "webhookId": "babfc516-ab9a-4524-b1db-5c0abe2d099f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gusMvgfyKljbnXz1",
+          "name": "Gmail vhc@ican.vn"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/11-E1yn7mu5ffC4OmixV6qmYsMUS-SsVDoMc_8DTPnik/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 275716842,
+          "mode": "list",
+          "cachedResultName": "Template tháng",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11-E1yn7mu5ffC4OmixV6qmYsMUS-SsVDoMc_8DTPnik/edit#gid=275716842"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "linkmail": "=https://mail.google.com/mail/u/0/#inbox/{{ $json.threadId }}",
+            "row_number": "={{ $('Google Sheets').item.json.row_number }}",
+            "Check": "Đã gửi"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Email CTV",
+              "displayName": "Email CTV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tháng Năm",
+              "displayName": "Tháng Năm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã nhân viên",
+              "displayName": "Mã nhân viên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Họ và Tên",
+              "displayName": "Họ và Tên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mức lương cơ bản",
+              "displayName": "Mức lương cơ bản",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tổng giờ làm việc",
+              "displayName": "Tổng giờ làm việc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phạt",
+              "displayName": "Phạt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thưởng",
+              "displayName": "Thưởng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LƯƠNG THỰC LĨNH",
+              "displayName": "LƯƠNG THỰC LĨNH",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Bộ phận làm việc",
+              "displayName": "Bộ phận làm việc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tổng thu nhập trước khi khấu trừ Thuế TNCN",
+              "displayName": "Tổng thu nhập trước khi khấu trừ Thuế TNCN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thuế TNCN",
+              "displayName": "Thuế TNCN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tổng thu nhập sau khi khấu trừ Thuế TNCN",
+              "displayName": "Tổng thu nhập sau khi khấu trừ Thuế TNCN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check",
+              "displayName": "Check",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "linkmail",
+              "displayName": "linkmail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "4582b32c-bf24-46bc-a8d6-aab719a9d6e8",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1820,
+        520
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "7a3b425c-d3a3-4fcc-8dea-785f1779aabb",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        520
+      ],
+      "id": "df4ee31a-e7c8-4b68-9276-fc35148e9a35",
+      "name": "Webhook",
+      "webhookId": "7a3b425c-d3a3-4fcc-8dea-785f1779aabb"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "33d101c2-d976-497a-9889-388dd405a663",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "34d6c8416ab990d4be347bd9d4963440b5ae40b1d8168ac2eb8d09f6a7ac95ce"
+  },
+  "id": "BX1qgnOwpTpFRlCX",
+  "tags": []
+}

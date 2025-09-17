@@ -1,0 +1,983 @@
+{
+  "name": "cắt pending lớp 1:1 SPW",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api-scheduling.hocmai.net/classes/{{ $json.data.content[0].id }}/sessions/pagination?page=0&size=50&sort=from_date%2Casc",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('HTTP Request1').item.json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"classId\": \"{{ $json.data.content[0].id }}\",\n\"sessionStatus\": \"UN_START\"\n}",
+        "options": {}
+      },
+      "id": "3efe9878-3168-42e3-b13d-2219b1d3cdd6",
+      "name": "classsession",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        900,
+        280
+      ],
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://sso.hocmai.com/auth/realms/hocmai/protocol/openid-connect/token",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"client_id\": \"dev.web-admin-dashboard\",\n  \"grant_type\": \"password\",\n  \"password\": \"GE@12345\",\n  \"username\": \"quantd\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        280,
+        300
+      ],
+      "id": "2378182f-d27c-4897-b92e-bb907aae2f4b",
+      "name": "HTTP Request1",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api-scheduling.hocmai.net/classes/search?page=0&size=50",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"status\": \"ON_GOING\", \"classKeyword\": \"{{ $('DataPending').item.json['Mã lớp'] }}\"}",
+        "options": {}
+      },
+      "id": "4660aa42-11db-4981-9b8e-d92046160b60",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        460,
+        300
+      ],
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "events": [
+          "update"
+        ]
+      },
+      "id": "c5620319-5320-47fe-bf54-51acb49594c2",
+      "name": "n8n Trigger",
+      "type": "n8n-nodes-base.n8nTrigger",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:5678/webhook/7a4ac258-c9ae-454f-8c30-a8d9694d003d",
+        "options": {}
+      },
+      "id": "80383467-77e1-40cf-b284-ec140389b85c",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        820,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        620,
+        660
+      ],
+      "id": "820d027c-962a-4a13-a325-357bbdc5cad0",
+      "name": "Wait",
+      "webhookId": "75cb2185-d6d6-430a-aeb1-50f91ecae376"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1dcjXfLyKtkGDg9197bEgBq0gQPk3l-JRHKkP49OGX48/edit?gid=212718290#gid=212718290",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 212718290,
+          "mode": "list",
+          "cachedResultName": "Cắt pending",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dcjXfLyKtkGDg9197bEgBq0gQPk3l-JRHKkP49OGX48/edit#gid=212718290"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Check cắt",
+              "lookupValue": "cắt"
+            },
+            {
+              "lookupColumn": "Loại lớp",
+              "lookupValue": "1v1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -100,
+        320
+      ],
+      "id": "1a0b5748-6f82-4554-882c-7535b3e78815",
+      "name": "DataPending",
+      "alwaysOutputData": false,
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a02205c4-508c-48f5-b216-f48b66eded3e",
+              "leftValue": "={{ $json.data.content[0].id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        660,
+        300
+      ],
+      "id": "15df08f0-8777-4f80-b454-d3103576c363",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "=https://api-scheduling.hocmai.net/classes/sessions/remove",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('HTTP Request1').item.json.access_token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"classSessionIds\": [{{ $json.processedIds }}]\n}",
+        "options": {}
+      },
+      "id": "3c2063e9-9f60-4c71-beec-b51ee23d40e5",
+      "name": "classsession2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1240,
+        280
+      ],
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const responseData = $json;\nlet ids = [];\n\n// Duyệt qua tất cả các item trong content array\nif (responseData.data && responseData.data.content && Array.isArray(responseData.data.content)) {\n  responseData.data.content.forEach(item => {\n    if (item.classSessionResponse && item.classSessionResponse.id) {\n      ids.push(item.classSessionResponse.id);\n    }\n  });\n}\n\n// Trả về processedIds và count\nreturn {\n  processedIds: ids.join(', '),\n  count: ids.length\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1060,
+        280
+      ],
+      "id": "470faa6b-776f-4721-9ddc-b6a98522e621",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1dcjXfLyKtkGDg9197bEgBq0gQPk3l-JRHKkP49OGX48/edit?gid=212718290#gid=212718290",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 212718290,
+          "mode": "list",
+          "cachedResultName": "Cắt pending",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dcjXfLyKtkGDg9197bEgBq0gQPk3l-JRHKkP49OGX48/edit#gid=212718290"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('DataPending').item.json.row_number }}",
+            "Check cắt": "=Đã cắt  {{ $('Code1').item.json.count }} buổi",
+            "Trạng thái xóa lớp": "TRUE"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Ngày cắt Pending",
+              "displayName": "Ngày cắt Pending",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ID HV",
+              "displayName": "ID HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID BOS",
+              "displayName": "ID BOS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái",
+              "displayName": "Trạng thái",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Số buổi còn lại",
+              "displayName": "Số buổi còn lại",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tên HV",
+              "displayName": "Tên HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số classin",
+              "displayName": "Số classin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Loại lớp",
+              "displayName": "Loại lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên giáo viên",
+              "displayName": "Tên giáo viên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Số điện thoại",
+              "displayName": "Số điện thoại",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Trạng thái xóa lớp",
+              "displayName": "Trạng thái xóa lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Trạng thái xóa gói",
+              "displayName": "Trạng thái xóa gói",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CTV",
+              "displayName": "CTV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Ngày cắt PendingID HV",
+              "displayName": "Ngày cắt PendingID HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "check cắt pending",
+              "displayName": "check cắt pending",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Mã lớp",
+              "displayName": "Mã lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check cắt",
+              "displayName": "Check cắt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1400,
+        280
+      ],
+      "id": "7ca9db17-4a18-406f-b801-cb262b748a23",
+      "name": "Google Sheets1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a07e7255-9c4e-42e1-8a17-d55410f9410d",
+              "leftValue": "={{ $json['Mã lớp'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        100,
+        320
+      ],
+      "id": "636fefca-54c3-4307-84f1-bd1617d30918",
+      "name": "If2",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1dcjXfLyKtkGDg9197bEgBq0gQPk3l-JRHKkP49OGX48/edit?gid=212718290#gid=212718290",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 212718290,
+          "mode": "list",
+          "cachedResultName": "Cắt pending",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dcjXfLyKtkGDg9197bEgBq0gQPk3l-JRHKkP49OGX48/edit#gid=212718290"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $json.row_number }}",
+            "Check cắt": "Lớp hết buổi",
+            "Trạng thái xóa lớp": "TRUE"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Ngày cắt Pending",
+              "displayName": "Ngày cắt Pending",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ID HV",
+              "displayName": "ID HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID BOS",
+              "displayName": "ID BOS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái",
+              "displayName": "Trạng thái",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Số buổi còn lại",
+              "displayName": "Số buổi còn lại",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tên HV",
+              "displayName": "Tên HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số classin",
+              "displayName": "Số classin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Loại lớp",
+              "displayName": "Loại lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên giáo viên",
+              "displayName": "Tên giáo viên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Số điện thoại",
+              "displayName": "Số điện thoại",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Trạng thái xóa lớp",
+              "displayName": "Trạng thái xóa lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Trạng thái xóa gói",
+              "displayName": "Trạng thái xóa gói",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CTV",
+              "displayName": "CTV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Ngày cắt PendingID HV",
+              "displayName": "Ngày cắt PendingID HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "check cắt pending",
+              "displayName": "check cắt pending",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Mã lớp",
+              "displayName": "Mã lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check cắt",
+              "displayName": "Check cắt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1060,
+        400
+      ],
+      "id": "296a7eab-ee22-4bab-b9e8-6e8db33778d9",
+      "name": "Google Sheets3",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lấy toàn bộ data từ node DataPending\nconst dataPendingData = $('If2').all();\n\n// Trả về toàn bộ data\nreturn dataPendingData;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        400
+      ],
+      "id": "8d573624-776c-4690-8989-4988b6981ad5",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        440,
+        660
+      ],
+      "id": "725b5f46-c07e-4324-a5b2-90f7c7b83f40",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "7a4ac258-c9ae-454f-8c30-a8d9694d003d",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -320,
+        400
+      ],
+      "id": "1f6a1010-830d-4ec7-b222-1a46c13dcae1",
+      "name": "Webhook",
+      "webhookId": "7a4ac258-c9ae-454f-8c30-a8d9694d003d"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "classsession": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "n8n Trigger": {
+      "main": [
+        [
+          {
+            "node": "DataPending",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DataPending": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "classsession",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "classsession2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "classsession2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets3": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "DataPending",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a7259111-1b9a-4a62-8813-985a77a176e2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "34d6c8416ab990d4be347bd9d4963440b5ae40b1d8168ac2eb8d09f6a7ac95ce"
+  },
+  "id": "NcKXvT8zCimDFtzo",
+  "tags": []
+}

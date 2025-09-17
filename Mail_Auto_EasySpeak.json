@@ -1,0 +1,595 @@
+{
+  "name": "Mail_Auto_EasySpeak",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/10lmaVyy6doBYIP0XtY9xrEdIH574ee_r7nFZxj66SOo/edit?gid=1167095357#gid=1167095357",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1167095357,
+          "mode": "list",
+          "cachedResultName": "Data HV",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10lmaVyy6doBYIP0XtY9xrEdIH574ee_r7nFZxj66SOo/edit#gid=1167095357"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "CheckDieuKien",
+              "lookupValue": "Đủ điều kiện"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "07eea2be-c7da-4e67-9df0-4e6598977841",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        880,
+        420
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7d01b15d-e6ca-45ab-b01e-346507313842",
+              "name": "Name",
+              "value": "={{ $json.Name }}",
+              "type": "string"
+            },
+            {
+              "id": "17649b04-c16f-4a23-862a-7ded0316042a",
+              "name": "Số điện thoại HV",
+              "value": "={{ $json['Số điện thoại HV'] }}",
+              "type": "number"
+            },
+            {
+              "id": "5a587711-785e-44af-a576-5b5566667ef2",
+              "name": "Email",
+              "value": "={{ $json.Email }}",
+              "type": "string"
+            },
+            {
+              "id": "c4cd5574-cef6-4fcb-83eb-676b878f78fe",
+              "name": "Trình độ đầu vào",
+              "value": "={{ $json['Trình độ đầu vào'] }}",
+              "type": "string"
+            },
+            {
+              "id": "a6e6b3d1-1fb7-4093-944e-c3feee2493a6",
+              "name": "Số Credit",
+              "value": "={{ $json['Số Credit'] }}",
+              "type": "number"
+            },
+            {
+              "id": "da6ad5fe-04ba-41c0-a2ca-60daf7389c2e",
+              "name": "Tài khoản LMS",
+              "value": "={{ $json['Tài khoản LMS'] }}",
+              "type": "string"
+            },
+            {
+              "id": "07c16ca1-fc3b-4b43-a766-b1f9bb62d0a1",
+              "name": "Mật khẩu LMS",
+              "value": "={{ $json['Mật khẩu LMS'] }}",
+              "type": "string"
+            },
+            {
+              "id": "3ea4e83b-18ba-4c84-8ca5-305b246195d6",
+              "name": "Ngày khai giảng",
+              "value": "={{ $json['Ngày khai giảng'] }}",
+              "type": "string"
+            },
+            {
+              "id": "9d0ba76e-3f7c-4449-8603-d562983c719b",
+              "name": "IDRowAuto",
+              "value": "={{ $json.IDRowAuto }}",
+              "type": "string"
+            },
+            {
+              "id": "56040a4f-19ca-435b-a48d-fbba70e4cbf0",
+              "name": "TrangthaiGui",
+              "value": "={{ $json.TrangthaiGui }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9d1d4435-be8d-4a88-9963-ee0e444c0fac",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1100,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/10lmaVyy6doBYIP0XtY9xrEdIH574ee_r7nFZxj66SOo/edit?gid=1980685367#gid=1980685367",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1167095357,
+          "mode": "list",
+          "cachedResultName": "Data HV",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10lmaVyy6doBYIP0XtY9xrEdIH574ee_r7nFZxj66SOo/edit#gid=1167095357"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDRowAuto": "={{ $('Edit Fields').item.json.IDRowAuto }}",
+            "TrangthaiGui": "DaGuimail",
+            "Mail Merge Status": "=https://mail.google.com/mail/u/0/#inbox/{{ $json.threadId }}"
+          },
+          "matchingColumns": [
+            "IDRowAuto"
+          ],
+          "schema": [
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số điện thoại HV",
+              "displayName": "Số điện thoại HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trình độ đầu vào",
+              "displayName": "Trình độ đầu vào",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số Credit",
+              "displayName": "Số Credit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note sale",
+              "displayName": "Note sale",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TVV",
+              "displayName": "TVV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hạn sử dụng",
+              "displayName": "Hạn sử dụng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày khai giảng",
+              "displayName": "Ngày khai giảng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Link LMS",
+              "displayName": "Link LMS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tài khoản LMS",
+              "displayName": "Tài khoản LMS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mật khẩu LMS",
+              "displayName": "Mật khẩu LMS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tạo tk LMS",
+              "displayName": "Tạo tk LMS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái xử lý",
+              "displayName": "Trạng thái xử lý",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link ticket (đối với TH bảo lưu)",
+              "displayName": "Link ticket (đối với TH bảo lưu)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "NOTE",
+              "displayName": "NOTE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "QLHV WLC",
+              "displayName": "QLHV WLC",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày lên WLC",
+              "displayName": "Ngày lên WLC",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email Address",
+              "displayName": "Email Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "File Attachments",
+              "displayName": "File Attachments",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Scheduled Date",
+              "displayName": "Scheduled Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mail Merge Status",
+              "displayName": "Mail Merge Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày khai giảng",
+              "displayName": "Ngày khai giảng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TimestampL6",
+              "displayName": "TimestampL6",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IDRowAuto",
+              "displayName": "IDRowAuto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CheckDieuKien",
+              "displayName": "CheckDieuKien",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TrangthaiGui",
+              "displayName": "TrangthaiGui",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "227d1e25-fcef-4ec0-a346-3c91d63eaec9",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1540,
+        420
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            },
+            {
+              "triggerAtHour": 12
+            },
+            {
+              "triggerAtHour": 16
+            },
+            {
+              "triggerAtHour": 18
+            }
+          ]
+        }
+      },
+      "id": "17faef8a-5bc3-40c9-aa8a-ca2759d3396c",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        660,
+        420
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "484c5028-36c6-4e56-b492-86a3e6ed8167",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        620,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-1002318065421",
+        "text": "Lỗi mail hãy check lại !!!",
+        "additionalFields": {}
+      },
+      "id": "8b309a66-6a48-47b1-b731-6cb8a40305d1",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        900,
+        260
+      ],
+      "webhookId": "8bf14502-ae38-44bc-8c59-7c0a93e0fc34",
+      "credentials": {
+        "telegramApi": {
+          "id": "2EcZ4GHvP7A5GK37",
+          "name": "Báo lỗi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "=Easy SPEAK - Thông báo khóa học mới của học viên {{ $json.Name }}",
+        "message": "=<!DOCTYPE html>\n<span id=\"docs-internal-guid-7604d30f-7fff-e110-1091-335c954cd0e7\"><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"left\"><span id=\"docs-internal-guid-9bdd2dd1-7fff-1cbd-67e6-1d5676b270da\"><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"left\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"794\"></colgroup><tbody><tr style=\"height:789.75pt\"><td style=\"vertical-align:top;background-color:#efefef;padding:36pt 36pt 36pt 36pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\"><span style=\"border:none;display:inline-block;overflow:hidden;width:697px;height:93px;\"><img src=\"https://lh7-us.googleusercontent.com/8OpbOlInaYKY_meG81Tdwb70_hKrAUmqYs9KEQjf8Dk_TfWZ-buME7qgLcKzINHpr_qRv9_3JVOngGHdsWAkyZKbijE-9aNLxJzgkIcsMN0AQ7Xv8gIyTTNAjCZi-1bs_bBdaGzx1qSOw0Zi3dDhN6o\" width=\"697\" height=\"93\" style=\"margin-left:0px;margin-top:0px;\"></span></span></p><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"left\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"698\"></colgroup><tbody><tr style=\"height:104.25pt\"><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:top;background-color:#01467b;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-right: 3pt;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(255, 255, 255); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Easy SPEAK kính chào Quý Học viên/Quý Phụ huynh,&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.728;margin-right: 3pt;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(255, 255, 255); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Easy SPEAK là 1 chương trình tiếng Anh giao tiếp dành cho người từ 18 tuổi trở lên. Chương trình giúp Học viên tăng phản xạ giao tiếp tiếng Anh nhằm phục vụ đa dạng mục đích từ giao tiếp đời sống, giao tiếp trong công việc, tới bổ trợ kỹ năng thi nói của các chứng chỉ tiếng Anh quốc tế.</span></p><br><p dir=\"ltr\" style=\"line-height:1.728;margin-right: 3pt;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(255, 255, 255); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Easy SPEAK xin gửi thông tin chi tiết về khóa học của Quý Học viên {{ $json.Name }} như sau:</span></p></td></tr></tbody></table></div><br><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"left\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"186\"><col width=\"237\"><col width=\"273\"><col width=\"7\"><col width=\"7\"></colgroup><tbody><tr style=\"height:24pt\"><td colspan=\"5\" style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#01467b;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.44;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(255, 255, 255); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">THÔNG TIN KHÓA HỌC</span></p></td></tr><tr style=\"height:27pt\"><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Khóa học đăng ký:</span></p></td><td colspan=\"4\" style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Easy SPEAK</span></p></td></tr><tr style=\"height:27pt\"><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Số Credit:</span></p></td><td colspan=\"4\" style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Số Credit'] }}</span></p></td></tr><tr style=\"height:29.25pt\"><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Tài khoản LMS</span></p></td><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Tài khoản LMS'] }}</span></p></td><td colspan=\"3\" rowspan=\"2\" style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Dùng để đăng nhập “Hệ thống bài luyện tập sau buổi học (LMS)”.</span></p><p dir=\"ltr\" style=\"line-height:1.44;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">https://english.ican.vn/classroom/login/index.php</span></p></td></tr><tr style=\"height:29.25pt\"><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Mật khẩu LMS</span></p></td><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.44;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Hocmai@1234</span></p></td></tr><tr style=\"height:29.25pt\"><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Tài khoản đặt lịch</span></p></td><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Email }}</span></p></td><td colspan=\"3\" rowspan=\"2\" style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Dùng để đăng nhập “Hệ thống đặt lịch học”.</span></p><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">https://student.ican.vn/course-booking</span></p></td></tr><tr style=\"height:29.25pt\"><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Mật khẩu đặt lịch</span></p></td><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Ge@123456</span></p></td></tr><tr style=\"height:63.75pt\"><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Cẩm nang học tập:</span></p></td><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.44;margin-top:0pt;margin-bottom:0pt;\"><a href=\"https://drive.google.com/file/d/12W9lexl_f9z2vKv3gLJ08zx3WWuErlEx/view?usp=sharing\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">https://drive.google.com/file/d/12W9lexl_f9z2vKv3gLJ08zx3WWuErlEx/view?usp=sharing</span></a></p></td><td colspan=\"3\" style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.44;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Quý Học viên vui lòng đọc kỹ để đảm bảo quyền lợi.</span></p></td></tr></tbody></table></div><br><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"left\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"212\"><col width=\"193\"><col width=\"291\"></colgroup><tbody><tr style=\"height:23.25pt\"><td colspan=\"3\" style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:top;background-color:#01467b;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.44;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 10pt; font-family: Lora, serif; color: rgb(255, 255, 255); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">TRỢ GIÚP&nbsp;</span></p></td></tr><tr style=\"height:42.75pt\"><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.44;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Hướng dẫn tải ứng dụng học tập ClassIn:</span></p></td><td colspan=\"2\" style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><a href=\"https://drive.google.com/drive/folders/1c0S0IR6XPHy_r6UomPi08zDr9xnew0-Y?usp=sharing\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">https://drive.google.com/drive/folders/1c0S0IR6XPHy_r6UomPi08zDr9xnew0-Y?usp=sharing</span></a></p></td></tr><tr style=\"height:37.5pt\"><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.44;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Hướng dẫn đặt lịch học và luyện tập sau buổi học (LMS):</span></p></td><td colspan=\"2\" style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.44;margin-top:0pt;margin-bottom:0pt;\"><a href=\"https://drive.google.com/file/d/1wp_-kCZBhMdfbVQLobkdymMsh8Rfemh7/view\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">https://drive.google.com/file/d/1wp_-kCZBhMdfbVQLobkdymMsh8Rfemh7/view</span></a></p></td></tr><tr style=\"height:27pt\"><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.44;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Hotline:</span></p></td><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">19009399 (nhánh 1)</span></p></td><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.44;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Từ 8:30 đến 22:00 hàng ngày trừ Lễ, Tết.</span></p></td></tr><tr style=\"height:40.5pt\"><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.44;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Zalo OA:</span></p></td><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(1, 70, 123); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">SpeakWell</span></p><br></td><td style=\"border-left:solid #01467b 0.9375pt;border-right:solid #01467b 0.9375pt;border-bottom:solid #01467b 0.9375pt;border-top:solid #01467b 0.9375pt;vertical-align:middle;background-color:#cfe2f3;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><a href=\"https://oa.zalo.me/1436634307621225141\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(17, 85, 204); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">https://oa.zalo.me/1436634307621225141</span></a></p></td></tr></tbody></table></div><br><br><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"left\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"698\"></colgroup><tbody><tr style=\"height:72.75pt\"><td style=\"border-left:solid #a4c2f4 0.9375pt;border-right:solid #a4c2f4 0.9375pt;border-bottom:solid #a4c2f4 0.9375pt;border-top:solid #a4c2f4 0.9375pt;vertical-align:top;background-color:#01467b;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(255, 255, 255); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Chúc Quý Học viên {{ $json.Name }} có một khóa học mới vui vẻ và bổ ích cùng Easy SPEAK!</span></p><br><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(255, 255, 255); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Trân trọng,</span></p><p dir=\"ltr\" style=\"line-height:1.728;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Lora, serif; color: rgb(255, 255, 255); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Easy SPEAK Team</span></p></td></tr></tbody></table></div><br></td></tr></tbody></table></div><br><div><span id=\"m_-9163691411086457274m_-1203847064089844125m_-8581176058810297834m_-7088464371180566233m_460083265415396279m_876809807703239702m_4990175510845938467m_5715128344137626346m_-197299723880383196m_8182739955797680522m_-4022956660646822429m_7390454119430417790m_1451412159017872319m_2926192067381178587m_-3761187759653593336m_6814112182774932427m_5433335800785163441m_8816195902119982771m_6910404909828006651m_1187824070333048015m_1851876583534604575m_-2848602599516933928m_8360613143147321649m_5070213497539125264m_1739365958246974865m_-2756122633293179568m_7719162113613611216m_3195877689569609969m_1916360607177237025m_3085670644481900307m_5616893210062630760m_6301362678847217894m_7809977462208281748m_-8229730503472623741m_6025672817303939444m_-5428555201612749402m_154927077593775820m_5299243474092041454m_826500878995374181m_128520663842766524m_-4050513552108521591m_-6333949773585791072m_4456034679504355376m_5291675206262966755gmail-docs-internal-guid-073fff00-7fff-1751-0943-dc46f6df5b14\"><span style=\"font-size: 10pt; font-family: Lora, serif; color: rgb(7, 55, 99); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; vertical-align: baseline; white-space-collapse: preserve;\"><span style=\"border: none; display: inline-block; overflow: hidden; width: 134px; height: 32px;\"><span id=\"m_-9163691411086457274m_-1203847064089844125m_-8581176058810297834m_-7088464371180566233m_460083265415396279m_876809807703239702m_4990175510845938467m_5715128344137626346m_-197299723880383196m_8182739955797680522m_-4022956660646822429m_7390454119430417790m_1451412159017872319m_2926192067381178587m_-3761187759653593336m_6814112182774932427m_5433335800785163441m_8816195902119982771m_6910404909828006651m_1187824070333048015m_1851876583534604575m_-2848602599516933928m_8360613143147321649m_5070213497539125264m_1739365958246974865m_-2756122633293179568m_7719162113613611216m_3195877689569609969m_1916360607177237025m_3085670644481900307m_5616893210062630760m_6301362678847217894m_7809977462208281748m_-8229730503472623741m_6025672817303939444m_-5428555201612749402m_154927077593775820m_5299243474092041454m_826500878995374181m_128520663842766524m_-4050513552108521591m_-6333949773585791072m_4456034679504355376m_5291675206262966755gmail-docs-internal-guid-93b7e885-7fff-7652-460b-8e4a25624397\"><span style=\"font-size: 10pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; vertical-align: baseline;\"><span style=\"border: none; display: inline-block; overflow: hidden; width: 134px; height: 32px;\"><img src=\"https://mail.google.com/mail/u/0?ui=2&amp;ik=a696352dd9&amp;attid=0.3&amp;permmsgid=msg-f:1772867718563102390&amp;th=189a7dcc06b5feb6&amp;view=fimg&amp;fur=ip&amp;sz=s0-l75-ft&amp;attbid=ANGjdJ_vzcAUNh0AfYIV2rpPXK_enhP2zPkVmRktYhLVpuh2ZmArbtUnIz-p5DXnUZmqOZeXmoWYTMRB6VSt7ZRyM5wre4uu-0eO36rucEYDTHz7pXTD5dOLvh6mnFU&amp;disp=emb&amp;realattid=ii_lft68uws11\" alt=\"\" width=\"134\" height=\"32\" data-image-whitelisted=\"\" class=\"CToWUd\" data-bit=\"iit\"></span></span></span>\n\n\n\n<span id=\"m_-9163691411086457274m_-1203847064089844125m_-8581176058810297834m_-7088464371180566233m_460083265415396279m_876809807703239702m_4990175510845938467m_5715128344137626346m_-197299723880383196m_8182739955797680522m_-4022956660646822429m_7390454119430417790m_1451412159017872319m_2926192067381178587m_-3761187759653593336m_6814112182774932427m_5433335800785163441m_8816195902119982771m_6910404909828006651m_1187824070333048015m_1851876583534604575m_-2848602599516933928m_8360613143147321649m_5070213497539125264m_1739365958246974865m_-2756122633293179568m_7719162113613611216m_3195877689569609969m_1916360607177237025m_3085670644481900307m_5616893210062630760m_6301362678847217894m_7809977462208281748m_-8229730503472623741m_6025672817303939444m_-5428555201612749402m_154927077593775820m_5299243474092041454m_826500878995374181m_128520663842766524m_-4050513552108521591m_-6333949773585791072m_4456034679504355376m_5291675206262966755gmail-docs-internal-guid-93b7e885-7fff-7652-460b-8e4a25624397\"><span style=\"font-size: 10pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; vertical-align: baseline;\"><span style=\"border: none; display: inline-block; overflow: hidden; width: 134px; height: 32px;\"><img src=\"https://mail.google.com/mail/u/0?ui=2&amp;ik=a696352dd9&amp;attid=0.2&amp;permmsgid=msg-f:1772867718563102390&amp;th=189a7dcc06b5feb6&amp;view=fimg&amp;fur=ip&amp;sz=s0-l75-ft&amp;attbid=ANGjdJ9vCKILcXG4cewFt6uhIeq3qTGrW37UgKWQ-EZIEvpW0ddhBrWGTokucoMz01nfsIfceniOB_pCZbTmFXcCWcPYZiP9eLCiuyIxMZnaNfjAxeJT5NMLgs-s-ek&amp;disp=emb&amp;realattid=ii_lft68spn10\" alt=\"\" width=\"134\" height=\"32\" data-image-whitelisted=\"\" class=\"CToWUd\" data-bit=\"iit\"></span></span></span>\n\n\n\n<span id=\"m_-9163691411086457274m_-1203847064089844125m_-8581176058810297834m_-7088464371180566233m_460083265415396279m_876809807703239702m_4990175510845938467m_5715128344137626346m_-197299723880383196m_8182739955797680522m_-4022956660646822429m_7390454119430417790m_1451412159017872319m_2926192067381178587m_-3761187759653593336m_6814112182774932427m_5433335800785163441m_8816195902119982771m_6910404909828006651m_1187824070333048015m_1851876583534604575m_-2848602599516933928m_8360613143147321649m_5070213497539125264m_1739365958246974865m_-2756122633293179568m_7719162113613611216m_3195877689569609969m_1916360607177237025m_3085670644481900307m_5616893210062630760m_6301362678847217894m_7809977462208281748m_-8229730503472623741m_6025672817303939444m_-5428555201612749402m_154927077593775820m_5299243474092041454m_826500878995374181m_128520663842766524m_-4050513552108521591m_-6333949773585791072m_4456034679504355376m_5291675206262966755gmail-docs-internal-guid-073fff00-7fff-1751-0943-dc46f6df5b14\"><span style=\"font-size: 10pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; vertical-align: baseline;\"><span style=\"border: none; display: inline-block; overflow: hidden; width: 134px; height: 32px;\"><div class=\"gmail_chip gmail_chip_bubble\" style=\"width: 134px; height: 32px; border: 1px dashed rgb(224, 224, 224); background-color: rgb(240, 240, 240); display: inline-block;\"></div></span></span></span>\n\n\n\n<span id=\"m_-9163691411086457274m_-1203847064089844125m_-8581176058810297834m_-7088464371180566233m_460083265415396279m_876809807703239702m_4990175510845938467m_5715128344137626346m_-197299723880383196m_8182739955797680522m_-4022956660646822429m_7390454119430417790m_1451412159017872319m_2926192067381178587m_-3761187759653593336m_6814112182774932427m_5433335800785163441m_8816195902119982771m_6910404909828006651m_1187824070333048015m_1851876583534604575m_-2848602599516933928m_8360613143147321649m_5070213497539125264m_1739365958246974865m_-2756122633293179568m_7719162113613611216m_3195877689569609969m_1916360607177237025m_3085670644481900307m_5616893210062630760m_6301362678847217894m_7809977462208281748m_-8229730503472623741m_6025672817303939444m_-5428555201612749402m_154927077593775820m_5299243474092041454m_826500878995374181m_128520663842766524m_-4050513552108521591m_-6333949773585791072m_4456034679504355376m_5291675206262966755gmail-docs-internal-guid-073fff00-7fff-1751-0943-dc46f6df5b14\"><span style=\"font-size: 10pt; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; vertical-align: baseline;\"><span style=\"border: none; display: inline-block; overflow: hidden; width: 134px; height: 32px;\"><img src=\"https://mail.google.com/mail/u/0?ui=2&amp;ik=a696352dd9&amp;attid=0.1&amp;permmsgid=msg-f:1772867718563102390&amp;th=189a7dcc06b5feb6&amp;view=fimg&amp;fur=ip&amp;sz=s0-l75-ft&amp;attbid=ANGjdJ9GIwlTkmcnmJYDkTmvK_AsTEZj_wsHQMkB9G60r_i__2cSAQYspHu4jhmB8h4JldrAsGWsiNewTsHRdT9WS2wgfsLjfx4nRtxRXHLU4UNNArXaydyT2I74HCs&amp;disp=emb&amp;realattid=ii_lft65msg1\" alt=\"image.png\" width=\"134\" height=\"32\" data-image-whitelisted=\"\" class=\"CToWUd\" data-bit=\"iit\"></span></span></span>\n\n<div class=\"gmail_chip gmail_chip_bubble\" style=\"width: 134px; height: 32px; border: 1px dashed rgb(224, 224, 224); background-color: rgb(240, 240, 240); display: inline-block;\"></div></span></span></span><i style=\"font-size: 12.8px; color: rgb(32, 18, 77);\"><span style=\"font-family: Helvetica; font-size: 12px; text-align: center;\"><br></span></i></div><i style=\"font-size: 12.8px; color: rgb(32, 18, 77);\"><span style=\"font-family: Helvetica; font-size: 12px; text-align: center;\">Address: Suite 4, 25T2 Tower, Nguyen Thi Thap street, Hanoi, Vietnam</span><br style=\"font-family: Helvetica; font-size: 12px; text-align: center;\"></i><div style=\"color: rgb(34, 34, 34); font-size: 12.8px;\"><i style=\"color: rgb(32, 18, 77);\"><span style=\"font-family: Helvetica; font-size: 12px; text-align: center;\">Hotline:&nbsp;</span><span style=\"font-family: Helvetica; font-size: 12px; text-align: center;\">19009399</span></i></div><div style=\"color: rgb(34, 34, 34);\"><i style=\"font-size: 12.8px; color: rgb(32, 18, 77);\">Zalo OA:&nbsp;</i>&nbsp;<span style=\"color: rgb(0, 26, 51); letter-spacing: 0.2px; white-space-collapse: preserve;\"><font face=\"arial, sans-serif\"><i><a href=\"https://zalo.me/1436634307621225141\" target=\"_blank\" data-saferedirecturl=\"https://www.google.com/url?q=https://zalo.me/1436634307621225141&amp;source=gmail&amp;ust=1696653987508000&amp;usg=AOvVaw3hZWQI5uZ3hi_yAfAMQcQV\" style=\"color: rgb(17, 85, 204);\">https://zalo.me/<wbr>1436634307621225141</a></i></font></span></div><i style=\"font-size: 12.8px;\"><span style=\"color: rgb(32, 18, 77); font-family: Helvetica; font-size: 12px; text-align: center;\">Email:&nbsp;</span><a href=\"mailto:support@speakup.vn\" target=\"_blank\" style=\"color: rgb(17, 85, 204); font-family: Helvetica; font-size: 12px; text-align: center;\">support@speakup.vn</a><br style=\"font-family: Helvetica; font-size: 12px; text-align: center;\"><span style=\"font-family: Helvetica; font-size: 12px; text-align: center;\"><font color=\"#20124d\">Website:&nbsp;</font><font color=\"#0b5394\"><a href=\"http://speakwell.icanconnect.vn/\" target=\"_blank\" data-saferedirecturl=\"https://www.google.com/url?q=http://speakwell.icanconnect.vn&amp;source=gmail&amp;ust=1696653987508000&amp;usg=AOvVaw0BPCp_5B2q9UgkTgoWWUC_\" style=\"color: rgb(17, 85, 204);\">speakwell.icanconnect.vn</a></font></span></i><div class=\"yj6qo\"></div><div class=\"adL\"><br style=\"color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: small;\"></div></span></div><br><br></span>\n</html>",
+        "options": {
+          "senderName": "Ban Quản Lý Học Tập ICAN"
+        }
+      },
+      "id": "034e73a9-39b6-44aa-88b9-3abf48c2e4dc",
+      "name": "Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1320,
+        420
+      ],
+      "webhookId": "66bb6bf5-9225-41fe-9b37-1b9619770547",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "T5mctQvcvbL2afkz",
+          "name": "Gmail SPEAKUP"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a29c109d-e54f-4916-ae76-5cb42d081ced",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "34d6c8416ab990d4be347bd9d4963440b5ae40b1d8168ac2eb8d09f6a7ac95ce"
+  },
+  "id": "N5MwNk5Lc6oDUhM7",
+  "tags": []
+}

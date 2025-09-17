@@ -1,0 +1,1057 @@
+{
+  "name": "Mail Update_mail Khai giảng 2b",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            },
+            {
+              "triggerAtHour": 16
+            },
+            {
+              "triggerAtHour": 18,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "id": "91ef5849-603b-437d-ad11-6488f371ba83",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        620,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1yLhXki3R26yZOE88NM1i-Y4LgfAiamoFpEPqUlUTeJw/edit?pli=1&gid=1442141877#gid=1442141877",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1442141877,
+          "mode": "list",
+          "cachedResultName": "TK LMS 2b",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yLhXki3R26yZOE88NM1i-Y4LgfAiamoFpEPqUlUTeJw/edit#gid=1442141877"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "checkĐiều kiện",
+              "lookupValue": "Đủ điều kiện"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d504e87c-1ab9-45da-9abf-78808142537f",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        840,
+        340
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b5011bc7-5ebd-4f70-9d26-9243a61c101e",
+              "name": "IDRowAuto",
+              "value": "={{ $json.IDRowAuto }}",
+              "type": "string"
+            },
+            {
+              "id": "bb2995c3-637b-4f5e-be67-ad5763ede04c",
+              "name": "checkĐiều kiện",
+              "value": "={{ $json['checkĐiều kiện'] }}",
+              "type": "string"
+            },
+            {
+              "id": "6c6817f8-11fb-48ce-82b8-374e4c44105a",
+              "name": "Linkemail",
+              "value": "={{ $json.Linkemail }}",
+              "type": "string"
+            },
+            {
+              "id": "bb1115b9-d23a-4675-ab86-1e20c14664cf",
+              "name": "Trạng thái gửi mail KG",
+              "value": "={{ $json['Trạng thái gửi mail KG'] }}",
+              "type": "string"
+            },
+            {
+              "id": "d1554c2b-854c-4cde-a83c-a7cc62235501",
+              "name": "StudentCode",
+              "value": "={{ $json.StudentCode }}",
+              "type": "string"
+            },
+            {
+              "id": "efdb2a6e-08df-486d-a29b-038d026a05b5",
+              "name": "Fullname",
+              "value": "={{ $json.Fullname }}",
+              "type": "string"
+            },
+            {
+              "id": "3f1b1dba-d7be-4b3c-b2f5-560c1a6e865f",
+              "name": "Course",
+              "value": "={{ $json.Course }}",
+              "type": "string"
+            },
+            {
+              "id": "6b43a904-55d8-4647-a2fb-67f54cdad74b",
+              "name": "Email",
+              "value": "={{ $json.Email }}",
+              "type": "string"
+            },
+            {
+              "id": "c3ad3422-b3fd-4610-a6ce-a4e4bf0b02c8",
+              "name": "Usernamelms",
+              "value": "={{ $json.Usernamelms }}",
+              "type": "string"
+            },
+            {
+              "id": "0d405d56-e1e9-42cf-b5aa-0e76d20d26bb",
+              "name": "Passwordlms",
+              "value": "={{ $json.Passwordlms }}",
+              "type": "string"
+            },
+            {
+              "id": "86bd363d-2a3c-4a41-a3a2-6138c6f75375",
+              "name": "Classcode",
+              "value": "={{ $json.Classcode }}",
+              "type": "string"
+            },
+            {
+              "id": "2d78902b-5a9e-44d6-a4d2-89c4fa7ab4bc",
+              "name": "Date",
+              "value": "={{ $json.Date }}",
+              "type": "string"
+            },
+            {
+              "id": "d59d155a-130d-4178-a8d8-d41c4405be27",
+              "name": "Day1",
+              "value": "={{ $json.Day1 }}",
+              "type": "string"
+            },
+            {
+              "id": "5b4e40fc-f075-4396-9139-59702d3af3f6",
+              "name": "Time1",
+              "value": "={{ $json.Time1 }}",
+              "type": "string"
+            },
+            {
+              "id": "207cd958-4f83-4aca-9a1e-8d658306048e",
+              "name": "Day2",
+              "value": "={{ $json.Day2 }}",
+              "type": "string"
+            },
+            {
+              "id": "2ffecbc4-72d5-40cd-b971-8de4c950b025",
+              "name": "Time2",
+              "value": "={{ $json.Time2 }}",
+              "type": "string"
+            },
+            {
+              "id": "336d97a9-e58f-4caa-8cd5-c1ea6473ada1",
+              "name": "Link",
+              "value": "={{ $json.Link }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "adb55a5b-7f0a-4152-a9b9-1fac45c10ccf",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1040,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "49a781ee-6bea-49e2-834c-43e681dff02f",
+              "leftValue": "={{ $json.Course }}",
+              "rightValue": "Master",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "64bf0a01-69d1-4010-b23c-5bed5625ce4e",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1220,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "=[Easy IELTS] THÔNG BÁO LỊCH KHAI GIẢNG LỚP MASTER 1:8",
+        "message": "=<!DOCTYPE html>\n<span id=\"docs-internal-guid-42f632c8-7fff-b786-568e-eeef70e12367\"><div dir=\"ltr\" style=\"margin-left:-33pt;\" align=\"left\"></div><span id=\"docs-internal-guid-060d586d-7fff-f5ff-57ff-d1c2a36ebec2\"><div dir=\"ltr\" style=\"margin-left:-33pt;\" align=\"left\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"713\"></colgroup><tbody><tr style=\"height:631.5pt\"><td style=\"vertical-align:top;background-color:#ebf1fb;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><br><br><p dir=\"ltr\" style=\"line-height:2.4;text-align: center;margin-top:0pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"><span style=\"border:none;display:inline-block;overflow:hidden;width:147px;height:70px;\"><img src=\"https://lh7-rt.googleusercontent.com/docsz/AD_4nXc_E6sB5W9VTMuAT6tpmfTezJKUdGj6ahV-M_yrmFXWr-AFM09pEsMYePO_RqIR6Crse5TN4OGSRxd6sEi0c9yALhjGNBPhmQmfjmU5QrIR5PiY2A9qVImQW8Clf2e44ovI28Ya?key=_8vUfmvtv1boJ2-S6a9fYaA-\" width=\"147\" height=\"70\" style=\"margin-left:0px;margin-top:0px;\"></span></span></p><p dir=\"ltr\" style=\"line-height:1.38;margin-right: 2.25pt;text-align: center;margin-top:0pt;margin-bottom:10pt;\"><span style=\"font-size: 28pt; font-family: Roboto, sans-serif; color: rgb(0, 86, 164); background-color: transparent; font-weight: 900; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">THÔNG BÁO LỊCH KHAI GIẢNG LỚP MASTER</span></p><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"center\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"633\"></colgroup><tbody><tr style=\"height:0pt\"><td style=\"vertical-align:top;background-color:#074ba6;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.7999999999999998;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(255, 255, 255); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Easy IELTS&nbsp; xin kính chào Quý Học viên/ Quý Phụ huynh,&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.7999999999999998;text-align: justify;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(255, 255, 255); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Cảm ơn Quý Học viên/Quý Phụ huynh đã lựa chọn Easy IELTS là đơn vị đồng hành cùng Quý Học viên trên con đường chinh phục Tiếng Anh học thuật!</span></p><p dir=\"ltr\" style=\"line-height:1.7999999999999998;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(254, 254, 255); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Easy IELTS xin gửi thông tin chi tiết về lịch khai giảng lớp học IELTS Master của Quý Học viên như sau:</span></p></td></tr></tbody></table></div><br><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"center\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"195\"><col width=\"440\"></colgroup><tbody><tr style=\"height:21pt\"><td colspan=\"2\" style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#074ba6;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 12pt; font-family: Roboto, sans-serif; color: rgb(254, 254, 255); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">THÔNG TIN LỚP HỌC TRỰC TUYẾN</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Họ tên Học viên</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Fullname }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Mã Học viên</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.StudentCode }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Tên khóa học</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">IELTS Master</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Số buổi học của khoá</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">24 buổi/khóa</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Mã lớp</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Classcode }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Lịch học (2 buổi/tuần)</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Day1 }} - {{ $json.Time1 }} &amp; {{ $json.Day2 }} - {{ $json.Time2 }}&nbsp;</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Ngày khai giảng</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Date }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Nền tảng học trực tuyến</span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">&nbsp;</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Class-in</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Nội quy lớp học</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><a href=\"\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Quý học viên vui lòng ấn vào link này</span></a></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Hợp đồng khóa học</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><a href=\"https://drive.google.com/file/d/1bcgzPM6qyCX98sYJ0ynarZIEnGGUjZHR/view?usp=drive_link\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Quý học viên vui lòng ấn vào link này</span></a></p></td></tr><tr style=\"height:21pt\"><td colspan=\"2\" style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#074ba6;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 12pt; font-family: Roboto, sans-serif; color: rgb(254, 254, 255); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">THÔNG TIN TÀI KHOẢN LÀM BÀI TẬP</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Tên đăng nhập</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Usernamelms }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Mật khẩu</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Passwordlms }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Link Hệ thống học</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><a href=\"https://english.ican.vn/classroom/login/index.php\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Quý học viên vui lòng ấn vào link này</span></a></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Hướng dẫn đăng nhập và sử dụng tài khoản tự học</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><a href=\"https://www.youtube.com/watch?v=H_WsMTusp20\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Quý học viên vui lòng ấn vào link này</span></a></p></td></tr><tr style=\"height:21pt\"><td colspan=\"2\" style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#074ba6;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 12pt; font-family: Roboto, sans-serif; color: rgb(254, 254, 255); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">HƯỚNG DẪN CÀI ĐẶT VÀ SỬ DỤNG PHẦN MỀM HỌC TRỰC TUYẾN</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Nền tảng học trực tuyến&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">(Lớp Ielts Classroom)</span></p><br></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:2.4;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(255, 0, 0); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Class-in&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:2.4;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(255, 0, 0); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">(Học viên đăng nhập tài khoản theo số điện thoại đã đăng ký với Giáo vụ, theo mật khẩu Class-in gửi về trong tin nhắn điện thoại và&nbsp; TỰ TẢI, CÀI ĐẶT ứng dụng Class-in vào Laptop/Máy tính bàn có webcam để tham gia vào lớp Luyện nói trực tuyến với Giáo viên. Nếu phát sinh bất cứ vấn đề gì trong quá trình cài đặt/đăng nhập tài khoản, HV vui lòng liên hệ theo Hotline/ Zalo OA Easy IELTS để được hỗ trợ sớm nhất.)</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Hướng dẫn sử dụng phần mềm Class-in</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><a href=\"https://drive.google.com/file/d/1sRDHwut5I8YV01QrHPaO8PSPLYNkd6D2/view\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Quý học viên vui lòng ấn vào link này</span></a></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Link tải phần mềm Class-in</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:middle;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><a href=\"https://classin.vn/\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Quý học viên vui lòng ấn vào link này</span></a></p></td></tr></tbody></table></div><br><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"center\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"633\"></colgroup><tbody><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.7999999999999998;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Trong quá trình học tập, mọi thông tin cần giải đáp và phản ánh, Quý Học viên vui lòng liên hệ với Easy IELTS theo thông tin dưới đây để được hỗ trợ nhanh nhất:</span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"><br></span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">- Zalo:</span><a href=\"https://zalo.me/704191669447881548\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(74, 134, 232); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> </span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">https://zalo.me/704191669447881548</span></a></p><p dir=\"ltr\" style=\"line-height:1.7999999999999998;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">- Hotline: </span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">1900 9399 (phím 2)</span></p><p dir=\"ltr\" style=\"line-height:1.7999999999999998;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">- Để thuận tiện cho Phụ huynh/ Học viên chia sẻ và đóng góp ý kiến, ICANCONNECT cung cấp cổng ghi nhận phản hồi - góp ý:</span><a href=\"https://donggopykien.ican.vn/?=Email\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> </span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">https://donggopykien.ican.vn</span></a><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">.</span></p><p dir=\"ltr\" style=\"line-height:1.7999999999999998;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Cổng ghi nhận phản hồi - góp ý kỳ vọng những trải nghiệm tốt &amp; hài lòng tốt hơn cho Phụ huynh/ Học viên trong quá trình tiếp nhận &amp; phản hồi thông tin nhanh &amp; chính xác.</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.7999999999999998;text-align: justify;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Chúc Quý Học viên {{ $json.Fullname }} có một khóa học mới vui vẻ và bổ ích cùng Easy IELTS!</span></p><p dir=\"ltr\" style=\"line-height:1.7999999999999998;text-align: justify;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Trong thời gian chờ, quý PH/HV có thể tham gia group Easy IELTS. Đây là group dành riêng cho HV của Easy IELTS nhằm tạo nên môi trường lý tưởng trong việc giao lưu, trao đổi kiến thức và hỗ trợ quá trình ôn luyện IELTS trở nên dễ dàng hơn. Rất nhiều minigame thú vị, chương trình luyện tập bản quyền và những phần quà hấp dẫn chỉ có tại Easy IELTS. Tham gia tại:</span><a href=\"https://www.facebook.com/groups/easyieltsvn/\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> </span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Link</span></a></p></td></tr></tbody></table></div><br><p dir=\"ltr\" style=\"line-height:1.44;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(7, 55, 99); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Một lần nữa xin cảm ơn Quý Học viên/Quý Phụ huynh đã tin tưởng lựa chọn đồng hành cùng Easy IELTS.</span></p><br><p dir=\"ltr\" style=\"line-height:1.44;text-align: right;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(7, 55, 99); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Trân trọng,</span></p><p dir=\"ltr\" style=\"line-height:1.44;text-align: right;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(7, 55, 99); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Easy IELTS Team</span></p></td></tr></tbody></table></div><br></span></span>\n</html>",
+        "options": {
+          "senderName": "Easy IELTS"
+        }
+      },
+      "id": "b46b30dd-0226-40f8-990c-797e40451003",
+      "name": "Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1440,
+        320
+      ],
+      "webhookId": "4abe724e-4230-431e-b91e-b07e613beeb1",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iKNthf3PeyfqhtWB",
+          "name": "Ican Connect"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "4645333b-bd99-41f7-81b3-d548e8131dcd",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        620,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "=[Easy IELTS] THÔNG BÁO LỊCH KHAI GIẢNG LỚP LIVE EASY IELTS 1:8 - 2 BUỔI/TUẦN - {{ $json.Fullname }}",
+        "message": "=<!DOCTYPE html>\n<span id=\"docs-internal-guid-aa4a7c25-7fff-907e-598c-d204780ae561\"><p dir=\"ltr\" style=\"line-height: 1.38; margin-top: 0pt; margin-bottom: 2pt;\"></p><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"left\"></div><span id=\"docs-internal-guid-87169dcd-7fff-8384-d1d2-134b2de65cc6\"><p dir=\"ltr\" style=\"line-height: 1.38; margin-top: 0pt; margin-bottom: 2pt;\"></p><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"left\"></div></span><span id=\"docs-internal-guid-6d208250-7fff-51a8-1b93-9aab7612f871\"><div dir=\"ltr\" style=\"margin-left:-33pt;\" align=\"left\"></div><span id=\"docs-internal-guid-67bc30e3-7fff-0970-a7cd-502cdd7e43ab\"><div dir=\"ltr\" style=\"margin-left:-33pt;\" align=\"left\"></div><span id=\"docs-internal-guid-8e336d24-7fff-2304-aa30-d2e65c367167\"><div dir=\"ltr\" style=\"margin-left:-33pt;\" align=\"left\"></div><span id=\"docs-internal-guid-aecaa5e0-7fff-ab3a-ecdc-61a7863e90b1\"><div dir=\"ltr\" style=\"margin-left:-33pt;\" align=\"left\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"713\"></colgroup><tbody><tr style=\"height:631.5pt\"><td style=\"vertical-align:top;background-color:#ebf1fb;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><br><br><p dir=\"ltr\" style=\"line-height:2.4;text-align: center;margin-top:0pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"><span style=\"border:none;display:inline-block;overflow:hidden;width:147px;height:70px;\"><img src=\"https://lh7-rt.googleusercontent.com/docsz/AD_4nXc_E6sB5W9VTMuAT6tpmfTezJKUdGj6ahV-M_yrmFXWr-AFM09pEsMYePO_RqIR6Crse5TN4OGSRxd6sEi0c9yALhjGNBPhmQmfjmU5QrIR5PiY2A9qVImQW8Clf2e44ovI28Ya?key=_8vUfmvtv1boJ2-S6a9fYaA-\" width=\"147\" height=\"70\" style=\"margin-left:0px;margin-top:0px;\"></span></span></p><p dir=\"ltr\" style=\"line-height:1.38;margin-right: 2.25pt;text-align: center;margin-top:0pt;margin-bottom:10pt;\"><span style=\"font-size: 28pt; font-family: Roboto, sans-serif; color: rgb(0, 86, 164); background-color: transparent; font-weight: 900; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">THÔNG BÁO LỊCH KHAI GIẢNG LỚP LIVE EASY IELTS</span></p><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"center\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"633\"></colgroup><tbody><tr style=\"height:0pt\"><td style=\"vertical-align:top;background-color:#074ba6;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(255, 255, 255); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Easy IELTS&nbsp; xin kính chào Quý Học viên/ Quý Phụ huynh,&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.38;text-align: justify;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(255, 255, 255); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Cảm ơn Quý Học viên/Quý Phụ huynh đã lựa chọn Easy IELTS là đơn vị đồng hành cùng Quý Học viên trên con đường chinh phục Tiếng Anh học thuật!</span></p><p dir=\"ltr\" style=\"line-height:1.38;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(254, 254, 255); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Easy IELTS xin gửi thông tin chi tiết về lịch khai giảng lớp học Easy IELTS của Quý Học viên như sau:</span></p></td></tr></tbody></table></div><br><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"center\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"192\"><col width=\"443\"></colgroup><tbody><tr style=\"height:21pt\"><td colspan=\"2\" style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#074ba6;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 12pt; font-family: Roboto, sans-serif; color: rgb(254, 254, 255); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">THÔNG TIN LỚP HỌC TRỰC TUYẾN</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Họ tên Học viên</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Fullname }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Mã Học viên</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.StudentCode }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Tên khóa học</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">IELTS {{ $json.Course }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Số buổi học của khoá</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">36 buổi/khóa</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Mã lớp</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Classcode }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Lịch học (2 buổi/tuần)</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Day1 }} - {{ $json.Time1 }} &amp; {{ $json.Day2 }} - {{ $json.Time2 }}&nbsp;</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Ngày khai giảng</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Date }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Nền tảng học trực tuyến</span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">&nbsp;</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Class-in</span></p></td></tr><tr style=\"height:21pt\"><td colspan=\"2\" style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#074ba6;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 12pt; font-family: Roboto, sans-serif; color: rgb(254, 254, 255); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">THÔNG TIN TÀI KHOẢN LÀM BÀI TẬP</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Tên đăng nhập</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Usernamelms }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Mật khẩu</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Passwordlms }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Link Hệ thống học</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><a href=\"https://english.ican.vn/classroom/\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Quý học viên vui lòng ấn vào link này</span></a></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Hướng dẫn đăng nhập và sử dụng tài khoản tự học</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><a href=\"https://www.youtube.com/watch?v=H_WsMTusp20\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Quý học viên vui lòng ấn vào link này</span></a></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Nội quy lớp học</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><a href=\"https://drive.google.com/file/d/1oCbMnbHu2M1RGDrnsKmO9A5UTwrjsXl5/view\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Quý học viên vui lòng ấn vào link này</span></a></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Thời khóa biểu</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Link }}</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Hợp đồng khóa học</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">https://drive.google.com/file/d/1bcgzPM6qyCX98sYJ0ynarZIEnGGUjZHR/view?usp=drive_link</span></p><br><p dir=\"ltr\" style=\"line-height:1.38;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Toàn Bộ Thỏa Thuận giữa bạn và chúng tôi bao gồm (i) Điều Khoản Người Dùng, (ii) Chính Sách Dữ Liệu, (iii) Quy Tắc Ứng Xử Cộng Đồng Galaxy, và (iv) Chính Sách Riêng Của Dịch Vụ. Nội dung của Toàn Bộ Thỏa Thuận có thể được tìm thấy bất kỳ lúc nào trên website của chúng tôi (www.icanconnect.vn) hoặc bản Thỏa thuận gửi đính kèm email.</span></p><br><p dir=\"ltr\" style=\"line-height:1.38;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Khi sử dụng bất kỳ dịch vụ nào của chúng tôi, bạn đồng ý là đã dành thời gian đọc kỹ, hiểu và đồng ý với Toàn Bộ Thỏa Thuận. Việc đồng ý của bạn được thể hiện bằng chữ ký của bạn với hợp đồng bản cứng hoặc bằng hành động tích vào ô xác nhận trên website (www.icanconnect.vn) hoặc ứng dụng của chúng tôi khi bắt đầu sử dụng dịch vụ hoặc khi bạn nhận được email này và không phản hồi trong tối đa 03 ngày làm việc, cả bốn phương thức đều có giá trị pháp lý như nhau.</span></p></td></tr><tr style=\"height:21pt\"><td colspan=\"2\" style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#074ba6;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 12pt; font-family: Roboto, sans-serif; color: rgb(254, 254, 255); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">HƯỚNG DẪN CÀI ĐẶT VÀ SỬ DỤNG PHẦN MỀM HỌC TRỰC TUYẾN</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Nền tảng học trực tuyến&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">(Lớp Easy IELTS 1:8)</span></p><br></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:2.4;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(255, 0, 0); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Class-in&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:2.4;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(255, 0, 0); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">(Học viên đăng nhập tài khoản theo số điện thoại đã đăng ký với Giáo vụ, theo mật khẩu Class-in gửi về trong tin nhắn điện thoại và&nbsp; TỰ TẢI, CÀI ĐẶT ứng dụng Class-in vào Laptop/Máy tính bàn có webcam để tham gia vào lớp Luyện nói trực tuyến với Giáo viên. Nếu phát sinh bất cứ vấn đề gì trong quá trình cài đặt/đăng nhập tài khoản, HV vui lòng liên hệ theo Hotline/ Zalo OA Easy IELTS để được hỗ trợ sớm nhất.)</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Hướng dẫn sử dụng phần mềm Class-in</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><a href=\"https://drive.google.com/file/d/1sRDHwut5I8YV01QrHPaO8PSPLYNkd6D2/view\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Quý học viên vui lòng ấn vào link này</span></a></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Link tải phần mềm Class-in</span></p></td><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:10pt;margin-bottom:10pt;\"><a href=\"https://classin.vn/\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Quý học viên vui lòng ấn vào link này</span></a></p></td></tr></tbody></table></div><br><div dir=\"ltr\" style=\"margin-left:0pt;\" align=\"center\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"633\"></colgroup><tbody><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:2.38464;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Trong quá trình học tập, mọi thông tin cần giải đáp và phản ánh, Quý Học viên vui lòng liên hệ với Easy IELTS theo thông tin dưới đây để được hỗ trợ nhanh nhất:</span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"><br></span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">- Zalo:</span><a href=\"https://zalo.me/704191669447881548\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> </span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">https://zalo.me/704191669447881548</span></a></p><p dir=\"ltr\" style=\"line-height:2.38464;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">- Hotline: </span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">1900 9399 (phím 2)</span></p><p dir=\"ltr\" style=\"line-height:2.38464;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">- Để thuận tiện cho Phụ huynh/ Học viên chia sẻ và đóng góp ý kiến, ICANCONNECT cung cấp cổng ghi nhận phản hồi - góp ý:</span><a href=\"https://donggopykien.ican.vn/?=Email\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> </span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">https://donggopykien.ican.vn</span></a><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">.</span></p><p dir=\"ltr\" style=\"line-height:2.38464;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Cổng ghi nhận phản hồi - góp ý kỳ vọng những trải nghiệm tốt &amp; hài lòng tốt hơn cho Phụ huynh/ Học viên trong quá trình tiếp nhận &amp; phản hồi thông tin nhanh &amp; chính xác.</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #6d9eeb 1pt;border-right:solid #6d9eeb 1pt;border-bottom:solid #6d9eeb 1pt;border-top:solid #6d9eeb 1pt;vertical-align:top;background-color:#d5e4ff;padding:5pt 5pt 5pt 5pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.9871999999999999;text-align: justify;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Chúc Quý Học viên {{ $json.Fullname }} có một khóa học mới vui vẻ và bổ ích cùng Easy IELTS!</span></p><p dir=\"ltr\" style=\"line-height:1.9871999999999999;text-align: justify;margin-top:10pt;margin-bottom:10pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Trong thời gian chờ, quý PH/HV có thể tham gia group Easy IELTS. Đây là group dành riêng cho HV của Easy IELTS nhằm tạo nên môi trường lý tưởng trong việc giao lưu, trao đổi kiến thức và hỗ trợ quá trình ôn luyện IELTS trở nên dễ dàng hơn. Rất nhiều minigame thú vị, chương trình luyện tập bản quyền và những phần quà hấp dẫn chỉ có tại Easy IELTS. Tham gia tại:</span><a href=\"https://www.facebook.com/groups/easyieltsvn/\" style=\"text-decoration-line: none;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\"> </span><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(0, 0, 0); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; text-decoration-line: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space-collapse: preserve;\">Link</span></a></p></td></tr></tbody></table></div><br><p dir=\"ltr\" style=\"line-height:1.44;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(7, 55, 99); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Một lần nữa xin cảm ơn Quý Học viên/Quý Phụ huynh đã tin tưởng lựa chọn đồng hành cùng Easy IELTS.</span></p><br><p dir=\"ltr\" style=\"line-height:1.44;text-align: right;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(7, 55, 99); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Trân trọng,</span></p><p dir=\"ltr\" style=\"line-height:1.44;text-align: right;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size: 11pt; font-family: Roboto, sans-serif; color: rgb(7, 55, 99); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;\">Easy IELTS Team</span></p></td></tr></tbody></table></div><br></span></span></span></span></span>\n</html>",
+        "options": {
+          "senderName": "Easy IELTS"
+        }
+      },
+      "id": "4b238331-2041-4089-b2a1-dea1c119dca5",
+      "name": "Gmail1",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1700,
+        560
+      ],
+      "webhookId": "4abe724e-4230-431e-b91e-b07e613beeb1",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "iKNthf3PeyfqhtWB",
+          "name": "Ican Connect"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1yLhXki3R26yZOE88NM1i-Y4LgfAiamoFpEPqUlUTeJw/edit?pli=1&gid=1442141877#gid=1442141877",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1442141877,
+          "mode": "list",
+          "cachedResultName": "TK LMS 2b",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yLhXki3R26yZOE88NM1i-Y4LgfAiamoFpEPqUlUTeJw/edit#gid=1442141877"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDRowAuto": "={{ $('Google Sheets').item.json.IDRowAuto }}",
+            "Trạng thái gửi mail KG": "Đã gửi mail KG ",
+            "Linkemail": "=https://mail.google.com/mail/u/0/#inbox/{{ $json.threadId }}"
+          },
+          "matchingColumns": [
+            "IDRowAuto"
+          ],
+          "schema": [
+            {
+              "id": "Check trùng email",
+              "displayName": "Check trùng email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check trùng Username",
+              "displayName": "Check trùng Username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "STT",
+              "displayName": "STT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày tạo",
+              "displayName": "Ngày tạo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "StudentCode",
+              "displayName": "StudentCode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fullname",
+              "displayName": "Fullname",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SĐT HV",
+              "displayName": "SĐT HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cc",
+              "displayName": "cc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Course",
+              "displayName": "Course",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Usernamelms",
+              "displayName": "Usernamelms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Passwordlms",
+              "displayName": "Passwordlms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái tài khoản LMS",
+              "displayName": "Trạng thái tài khoản LMS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái gửi mail KG",
+              "displayName": "Trạng thái gửi mail KG",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Classcode",
+              "displayName": "Classcode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Day1",
+              "displayName": "Day1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Time1",
+              "displayName": "Time1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Day2",
+              "displayName": "Day2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Time2",
+              "displayName": "Time2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Merge status",
+              "displayName": "Merge status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Column W",
+              "displayName": "Column W",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sản phẩm dùng để match (Không xóa)",
+              "displayName": "Sản phẩm dùng để match (Không xóa)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IDRowAuto",
+              "displayName": "IDRowAuto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "checkĐiều kiện",
+              "displayName": "checkĐiều kiện",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Linkemail",
+              "displayName": "Linkemail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f8d9f7c4-2183-440c-8596-2472b7a84d41",
+      "name": "Google Sheets3",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1860,
+        560
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1yLhXki3R26yZOE88NM1i-Y4LgfAiamoFpEPqUlUTeJw/edit?pli=1&gid=1442141877#gid=1442141877",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1442141877,
+          "mode": "list",
+          "cachedResultName": "TK LMS 2b",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yLhXki3R26yZOE88NM1i-Y4LgfAiamoFpEPqUlUTeJw/edit#gid=1442141877"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDRowAuto": "={{ $('Google Sheets').item.json.IDRowAuto }}",
+            "Trạng thái gửi mail KG": "Đã gửi mail KG ",
+            "Linkemail": "=https://mail.google.com/mail/u/0/#inbox/{{ $json.threadId }}"
+          },
+          "matchingColumns": [
+            "IDRowAuto"
+          ],
+          "schema": [
+            {
+              "id": "Check trùng email",
+              "displayName": "Check trùng email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check trùng Username",
+              "displayName": "Check trùng Username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "STT",
+              "displayName": "STT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày tạo",
+              "displayName": "Ngày tạo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "StudentCode",
+              "displayName": "StudentCode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fullname",
+              "displayName": "Fullname",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SĐT HV",
+              "displayName": "SĐT HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cc",
+              "displayName": "cc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Course",
+              "displayName": "Course",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Usernamelms",
+              "displayName": "Usernamelms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Passwordlms",
+              "displayName": "Passwordlms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái tài khoản LMS",
+              "displayName": "Trạng thái tài khoản LMS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái gửi mail KG",
+              "displayName": "Trạng thái gửi mail KG",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Classcode",
+              "displayName": "Classcode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Day1",
+              "displayName": "Day1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Time1",
+              "displayName": "Time1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Day2",
+              "displayName": "Day2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Time2",
+              "displayName": "Time2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Merge status",
+              "displayName": "Merge status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Column W",
+              "displayName": "Column W",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sản phẩm dùng để match (Không xóa)",
+              "displayName": "Sản phẩm dùng để match (Không xóa)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IDRowAuto",
+              "displayName": "IDRowAuto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "checkĐiều kiện",
+              "displayName": "checkĐiều kiện",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Linkemail",
+              "displayName": "Linkemail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "81e70d81-ba41-4786-af0b-4a482e6d5d12",
+      "name": "Google Sheets4",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1620,
+        320
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-1002318065421",
+        "text": "Lỗi mail hãy check lại !!!",
+        "additionalFields": {}
+      },
+      "id": "17dac7c6-15ce-43bf-90b0-0eb74d066ac4",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        840,
+        140
+      ],
+      "webhookId": "e52bfc11-f839-4164-a500-cb0a311f5fce",
+      "credentials": {
+        "telegramApi": {
+          "id": "2EcZ4GHvP7A5GK37",
+          "name": "Báo lỗi"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2020,
+        360
+      ],
+      "id": "e757d88c-80f9-4d0e-aff7-b2e9256a82fb",
+      "name": "Merge"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gmail1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets4": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets3": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "3d01426b-462b-40a7-a869-d910304cd826",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "34d6c8416ab990d4be347bd9d4963440b5ae40b1d8168ac2eb8d09f6a7ac95ce"
+  },
+  "id": "Ab775mfS97IKeISW",
+  "tags": []
+}

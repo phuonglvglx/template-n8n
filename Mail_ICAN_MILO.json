@@ -1,0 +1,492 @@
+{
+  "name": "Mail ICAN MILO",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7
+            },
+            {
+              "triggerAtHour": 17
+            }
+          ]
+        }
+      },
+      "id": "97c12433-a477-47f6-8d1a-486a76993bdf",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        620,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1NUkjrhkKlsg0c2R17q8OqRZbNUJaYrvQSaBVGjt6LlI/edit?gid=2127383030#gid=2127383030",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2127383030,
+          "mode": "list",
+          "cachedResultName": "File làm việc Milo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NUkjrhkKlsg0c2R17q8OqRZbNUJaYrvQSaBVGjt6LlI/edit#gid=2127383030"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "checkĐiều kiện",
+              "lookupValue": "Đủ điều kiện"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "750fc863-d751-4376-81db-eaf8a0ff8145",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        840,
+        340
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1793b3a4-0d97-45c4-9ece-532d8e572e9b",
+              "name": "IDRowAuto",
+              "value": "={{ $json.IDRowAuto }}",
+              "type": "string"
+            },
+            {
+              "id": "ee91faf1-0bc5-4fbe-9f2a-03f369e06267",
+              "name": "Mã Học viên",
+              "value": "={{ $json['Mã Học viên'] }}",
+              "type": "string"
+            },
+            {
+              "id": "2bf5962b-c128-4ff4-9712-9cd05c5e143e",
+              "name": "Họ tên Học viên",
+              "value": "={{ $json['Họ tên Học viên'] }}",
+              "type": "string"
+            },
+            {
+              "id": "c4779262-55a7-4b77-8b1a-fd72f9f62467",
+              "name": "Email Học viên",
+              "value": "={{ $json['Email Học viên'] }}",
+              "type": "string"
+            },
+            {
+              "id": "9469f524-f9ba-4c59-9837-fd336f1c19c0",
+              "name": "Time",
+              "value": "={{ $json.Time }}",
+              "type": "string"
+            },
+            {
+              "id": "6d52af19-479e-491e-a9f3-6cfae882c92a",
+              "name": "Linkemail",
+              "value": "={{ $json.Linkemail }}",
+              "type": "string"
+            },
+            {
+              "id": "69313878-4945-4ea3-9c60-2b2d3cb8e67f",
+              "name": "Tình trạng gửi mail",
+              "value": "={{ $json['Tình trạng gửi mail'] }}",
+              "type": "string"
+            },
+            {
+              "id": "3ae8f9b6-f7c9-4982-b099-e5e5e603739a",
+              "name": "Usernamelms Rule: tenHV+chữ cái đầu của họ và tên đệm+năm tạo TK (VD:truongdx2025)",
+              "value": "={{ $json['Usernamelms Rule: tenHV+chữ cái đầu của họ và tên đệm+năm tạo TK (VD:truongdx2025)'] }}",
+              "type": "string"
+            },
+            {
+              "id": "eabb231c-3213-4e8d-b26c-cbd120ea645e",
+              "name": "Passwordlms (Công thức)",
+              "value": "={{ $json['Passwordlms (Công thức)'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "21d86869-336f-47b9-8519-9e2d4077ad5a",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1040,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Email Học viên'] }}",
+        "subject": "=[Speakwell - MILO] - THÔNG BÁO KHÓA HỌC MỚI - Học viên {{ $json['Họ tên Học viên'] }}",
+        "message": "=<!DOCTYPE html>\n<div dir=\"ltr\" align=\"left\" style=\"margin-left: 0pt;\"><table style=\"border: none; border-collapse: collapse; table-layout: fixed; width: 595.276pt;\"><tbody><tr style=\"height: 0pt;\"><td style=\"vertical-align: top; background-color: rgb(239, 239, 239); padding: 36pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\"><span style=\"border: none; display: inline-block; overflow: hidden; width: 697px; height: 99px;\"><br><img src=\"https://lh4.googleusercontent.com/e_mL6mG-tKeILnz-OCQul1KL3CDzXZWPHy65L_XA5GDpMqZ0vaT_klhj3XjIXkJCmdBQVzw_Pxdd_rT4JJ9nv7gvCFUkAwcF0Tf7DNaHBbs1qYYeFoATwA0NSIGKR1tGVaN65jBL3OtBnDVJlaSQZGc\" width=\"697\" height=\"99\" style=\"margin-left: 0px; margin-top: 0px;\"></span></span></p><br><div dir=\"ltr\" align=\"left\" style=\"margin-left: 0pt;\"><table style=\"border: none; border-collapse: collapse; table-layout: fixed; width: 697.694px;\"><colgroup><col></colgroup><tbody><tr style=\"height: 0pt;\"><td style=\"border-width: 1pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(249, 203, 156); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">SpeakWell xin kính chào Quý Học viên/Quý Phụ huynh,&nbsp;</span></p><br><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Khóa học English adventure with Milo là khóa học ngữ pháp tiếng Anh toàn diện cho học sinh từ lớp 3 - lớp 5, giúp học sinh tiếp thu dễ dàng, vững vàng nền tảng. Chúc mừng Quý Học viên</span><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Họ tên Học viên'] }}</span><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\"> đã trở thành học viên chính thức tại SpeakWell! SpeakWell xin gửi thông tin chi tiết về khóa học của Quý Học viên như sau:</span></p></td></tr></tbody></table></div><br><div dir=\"ltr\" align=\"left\" style=\"margin-left: 0pt;\"><table style=\"border: none; border-collapse: collapse; table-layout: fixed; width: 697.694px;\"><colgroup><col width=\"200\"><col width=\"115\"><col width=\"206\"><col></colgroup><tbody><tr style=\"height: 0pt;\"><td colspan=\"4\" style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(255, 153, 0); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2; text-align: center;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">THÔNG TIN</span></p></td></tr><tr style=\"height: 0pt;\"><td style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Chương trình học</span></p></td><td colspan=\"3\" style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">English adventure with Milo</span></p></td></tr><tr style=\"height: 0pt;\"><td style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Giáo viên</span></p></td><td colspan=\"3\" style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Cô Sara McQuaid</span></p></td></tr><tr style=\"height: 0pt;\"><td style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Trợ giảng và lồng tiếng Milo</span></p></td><td colspan=\"3\" style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Cô Thu Chi</span></p></td></tr><tr style=\"height: 25.627pt;\"><td style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Link hệ thống bài giảng</span></p></td><td colspan=\"3\" style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><font color=\"#1c4587\" face=\"Arial\"><span style=\"font-size: 14.6667px; white-space-collapse: preserve;\"><i>http://moodle.speakup.vn/course/admin.php?courseid=41</i></span></font><br></p></td></tr><tr style=\"height: 0pt;\"><td style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 10pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Hướng dẫn truy cập vào hệ thống bài giảng</span></p></td><td colspan=\"3\" style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\"><a href=\"https://drive.google.com/file/d/1nl0PJgRazobr7DRBFh0J_9D0_7UpbE3l/view?usp=sharing\" target=\"_blank\" data-saferedirecturl=\"https://www.google.com/url?q=https://drive.google.com/file/d/1nl0PJgRazobr7DRBFh0J_9D0_7UpbE3l/view?usp%3Dsharing&amp;source=gmail&amp;ust=1690882448292000&amp;usg=AOvVaw2aGbedTJIXJ17GnOoln4Ei\">https://drive.google.com/file/<wbr>d/1nl0PJgRazobr7DRBFh0J_9D0_<wbr>7UpbE3l/view?usp=sharing</a></span></p></td></tr><tr style=\"height: 0pt;\"><td style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 10pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Tài khoản đăng nhập</span></p></td><td colspan=\"3\" style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Username: {{ $json['Usernamelms Rule: tenHV+chữ cái đầu của họ và tên đệm+năm tạo TK (VD:truongdx2025)'] }}</span></p><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Password: {{ $json['Passwordlms (Công thức)'] }}</span></p></td></tr><tr style=\"height: 0pt;\"><td style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Ngày bắt đầu:</span></p></td><td colspan=\"3\" style=\"border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">{{ $json.Time }}</span></p></td></tr></tbody></table></div><br><div dir=\"ltr\" align=\"left\" style=\"margin-left: 0pt;\"><table style=\"border: none; border-collapse: collapse;\"><colgroup><col width=\"202\"><col width=\"494\"></colgroup><tbody><tr style=\"height: 22pt;\"><td colspan=\"2\" style=\"vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Trong quá trình học tập, Quý Học viên vui lòng liên hệ với SpeakWell theo thông tin dưới đây để được hỗ trợ nhanh nhất khi có bất kỳ vấn đề nào:</span></p></td></tr><tr style=\"height: 21pt;\"><td colspan=\"2\" style=\"vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">- Hotline: 19009399 (nhánh 1)</span></p><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><font face=\"Arial\"><span style=\"font-size: 14.6667px; white-space-collapse: preserve;\"><b><i><font color=\"#1c4587\">- Zalo OA:</font><font color=\"#0000ff\"> </font></i></b></span></font><b><font color=\"#0b5394\"><a href=\"https://zalo.me/1436634307621225141\" target=\"_blank\" data-saferedirecturl=\"https://www.google.com/url?q=https://zalo.me/1436634307621225141&amp;source=gmail&amp;ust=1690882448292000&amp;usg=AOvVaw0zt1DmOAIWt4aGbhIUy4TK\">https://zalo.me/<wbr>1436634307621225141</a></font></b></p><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">- Email: </span><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\"><a href=\"mailto:support@speakwell.vn\" target=\"_blank\">support1@ican.vn</a></span></p><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><br></p></td></tr></tbody></table></div><br><div dir=\"ltr\" align=\"left\" style=\"margin-left: 0pt;\"><table style=\"border: none; border-collapse: collapse; table-layout: fixed; width: 697.694px;\"><colgroup><col></colgroup><tbody><tr style=\"height: 0pt;\"><td style=\"vertical-align: top; background-color: rgb(249, 203, 156); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Chúc Quý Học viên {{ $json['Họ tên Học viên'] }} có một khóa học mới vui vẻ và bổ ích cùng SpeakWell!. </span></p><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Trân trọng,</span></p><br><p dir=\"ltr\" style=\"margin-top: 0pt; margin-bottom: 0pt; line-height: 1.2;\"><span style=\"font-size: 11pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">SpeakWell team</span></p></td></tr></tbody></table></div><br></td></tr></tbody></table></div><div></div><div></div><div></div><div><br></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div><br></div>--<br><div dir=\"ltr\" data-smartmail=\"gmail_signature\"><div dir=\"ltr\"><div><i style=\"font-size: 12.8px; color: rgb(32, 18, 77);\"><span style=\"font-family: Helvetica; font-size: 12px; text-align: center;\"><img width=\"200\" height=\"52\" src=\"https://ci3.googleusercontent.com/mail-sig/AIorK4wWiRb1YotUvTx14qjzsW4e5OMfRjgReojNEUh_U3aNTxL5magRMjS0nQG_CHgrkY2kzNmzapU\"><br></span></i></div><i style=\"font-size: 12.8px; color: rgb(32, 18, 77);\"><span style=\"font-family: Helvetica; font-size: 12px; text-align: center;\">Address: Suite 4, 25T2 Tower, Nguyen Thi Thap street, Hanoi, Vietnam</span><br style=\"font-family: Helvetica; font-size: 12px; text-align: center;\"></i><div style=\"color: rgb(34, 34, 34); font-size: 12.8px;\"><i style=\"color: rgb(32, 18, 77);\"><span style=\"font-family: Helvetica; font-size: 12px; text-align: center;\">Hotline:&nbsp;</span><span style=\"font-family: Helvetica; font-size: 12px; text-align: center;\">19009399 (nhánh 1)</span></i></div><div style=\"color: rgb(34, 34, 34);\"><i style=\"font-size: 12.8px; color: rgb(32, 18, 77);\">Zalo OA:&nbsp;</i>&nbsp;<span style=\"color: rgb(0, 26, 51); letter-spacing: 0.2px; white-space-collapse: preserve;\"><font face=\"arial, sans-serif\"><i><a href=\"https://zalo.me/1436634307621225141\" target=\"_blank\" data-saferedirecturl=\"https://www.google.com/url?q=https://zalo.me/1436634307621225141&amp;source=gmail&amp;ust=1690882448292000&amp;usg=AOvVaw0zt1DmOAIWt4aGbhIUy4TK\" style=\"color: rgb(17, 85, 204);\">https://zalo.me/<wbr>1436634307621225141</a></i></font></span></div><i style=\"font-size: 12.8px;\"><span style=\"color: rgb(32, 18, 77); font-family: Helvetica; font-size: 12px; text-align: center;\">Email:&nbsp;</span><a href=\"mailto:support@speakup.vn\" target=\"_blank\" style=\"color: rgb(17, 85, 204); font-family: Helvetica; font-size: 12px; text-align: center;\">support1@ican.vn</a><br style=\"font-family: Helvetica; font-size: 12px; text-align: center;\"><span style=\"font-family: Helvetica; font-size: 12px; text-align: center;\"><font color=\"#20124d\">Website:&nbsp;</font><font color=\"#0b5394\"><a href=\"http://speakwell.icanconnect.vn/\" target=\"_blank\" data-saferedirecturl=\"https://www.google.com/url?q=http://speakwell.icanconnect.vn&amp;source=gmail&amp;ust=1690882448292000&amp;usg=AOvVaw0akp7RxWDj7NJOgmyOHTXX\">speakwell.icanconnect.vn</a></font></span></i></div></div>\n</html>",
+        "options": {
+          "senderName": "Ban Quản lý học tập ICAN"
+        }
+      },
+      "id": "9ec54010-38cb-43b9-a20a-b9174087349b",
+      "name": "Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1260,
+        340
+      ],
+      "webhookId": "e43179aa-bdb8-412a-9f67-fcfc2f967f31",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "T5mctQvcvbL2afkz",
+          "name": "Gmail SPEAKUP"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "fc7e3f1f-0ede-42cd-ad05-2b85777e61ae",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        620,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1NUkjrhkKlsg0c2R17q8OqRZbNUJaYrvQSaBVGjt6LlI/edit?gid=2127383030#gid=2127383030",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2127383030,
+          "mode": "list",
+          "cachedResultName": "File làm việc Milo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NUkjrhkKlsg0c2R17q8OqRZbNUJaYrvQSaBVGjt6LlI/edit#gid=2127383030"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDRowAuto": "={{ $('Edit Fields').item.json.IDRowAuto }}",
+            "Tình trạng gửi mail": "Đã gửi mail",
+            "Linkemail": "=https://mail.google.com/mail/u/0/#inbox/{{ $json.threadId }}"
+          },
+          "matchingColumns": [
+            "IDRowAuto"
+          ],
+          "schema": [
+            {
+              "id": "Check trùng email",
+              "displayName": "Check trùng email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check trùng usernamelms",
+              "displayName": "Check trùng usernamelms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "STT",
+              "displayName": "STT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã Học viên",
+              "displayName": "Mã Học viên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Họ tên Học viên",
+              "displayName": "Họ tên Học viên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email Học viên",
+              "displayName": "Email Học viên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SĐT Học viên",
+              "displayName": "SĐT Học viên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Học phí thực thanh toán",
+              "displayName": "Học phí thực thanh toán",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày Thanh toán",
+              "displayName": "Ngày Thanh toán",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note sale",
+              "displayName": "Note sale",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Usernamelms Rule: tenHV+chữ cái đầu của họ và tên đệm+năm tạo TK (VD:truongdx2025)",
+              "displayName": "Usernamelms Rule: tenHV+chữ cái đầu của họ và tên đệm+năm tạo TK (VD:truongdx2025)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Passwordlms (Công thức)",
+              "displayName": "Passwordlms (Công thức)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tình trạng cấp tài khoản",
+              "displayName": "Tình trạng cấp tài khoản",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tình trạng gửi mail",
+              "displayName": "Tình trạng gửi mail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Merge status",
+              "displayName": "Merge status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IDRowAuto",
+              "displayName": "IDRowAuto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "checkĐiều kiện",
+              "displayName": "checkĐiều kiện",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Linkemail",
+              "displayName": "Linkemail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a778bcc1-7c92-48f5-aa99-9db28a08b5b3",
+      "name": "Google Sheets4",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1440,
+        340
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-1002318065421",
+        "text": "Lỗi mail hãy check lại !!!",
+        "additionalFields": {}
+      },
+      "id": "5e2a99bd-771e-45d7-8eeb-be421bdd9673",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        840,
+        140
+      ],
+      "webhookId": "1e708a11-38f3-4eba-8a50-88f230e85fb1",
+      "credentials": {
+        "telegramApi": {
+          "id": "2EcZ4GHvP7A5GK37",
+          "name": "Báo lỗi"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b3798f0c-0ba6-488d-b821-f700263dccc3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "34d6c8416ab990d4be347bd9d4963440b5ae40b1d8168ac2eb8d09f6a7ac95ce"
+  },
+  "id": "IahIKALfzCgkfle6",
+  "tags": []
+}

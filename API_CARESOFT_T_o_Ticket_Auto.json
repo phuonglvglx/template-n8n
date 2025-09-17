@@ -1,0 +1,263 @@
+{
+  "name": "API_CARESOFT_Tạo_Ticket_Auto",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1CDTjIx3AV55Pc4p7HxAvtvsrJElvcvvgcJcyZ7joFjg/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Xử lý tiếp nhận",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CDTjIx3AV55Pc4p7HxAvtvsrJElvcvvgcJcyZ7joFjg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Tên Học Viên": "={{ $json.query.name }}",
+            "Số Điện Thoại": "={{ $json.query.phone }}",
+            "Sản phẩm đăng ký": "={{ $json.query.product }}",
+            "Về vấn đề": "={{ $json.query.issue }}",
+            "Nội dung chia sẻ": "={{ $json.query.notes }}",
+            "Rating": "={{ $json.query.rating }} Sao",
+            "LocationSource": "={{ $json.query.source }}",
+            "Timestamp": "={{ $json.query.timestamp }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên Học Viên",
+              "displayName": "Tên Học Viên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số Điện Thoại",
+              "displayName": "Số Điện Thoại",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sản phẩm đăng ký",
+              "displayName": "Sản phẩm đăng ký",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Về vấn đề",
+              "displayName": "Về vấn đề",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nội dung chia sẻ",
+              "displayName": "Nội dung chia sẻ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating",
+              "displayName": "Rating",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LocationSource",
+              "displayName": "LocationSource",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link_ticket",
+              "displayName": "Link_ticket",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c3eb2fe4-2d3f-4256-9364-4e5cfd8eb9ae",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1100,
+        440
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.caresoft.vn/GalaxyHN/api/v1/tickets",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer l96RBHiEWhOFvTo"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "=json",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "jsonBody": "={\n    \"ticket\": {\n        \"phone\": \"{{ $json.query.phone }}\",\n        \"username\": \"{{ $json.query.name }}\",\n        \"ticket_status\":\"Open\",\n        \"ticket_priority\":\"Urgent\",\n        \"group_id\":\"13753\",\n        \"ticket_subject\": \"[ICC - Form feedback] - GẤP - PH góp ý về {{ $json.query.issue }} \",\n        \"ticket_comment\": \" Tên HV :{{ $json.query.name }} \\n SĐT: {{ $json.query.phone }} \\n Sản phẩm: {{ $json.query.product }} \\n Vấn đề:{{ $json.query.notes }} \\n Rating: {{ $json.query.rating }} Sao\",\n        \"duedate\":\"{{ $json.query.timestamp }}\",\n        \"is_public\": 1\n    }\n}",
+        "options": {
+          "redirect": {}
+        }
+      },
+      "id": "cd697c0a-e793-474c-8bbc-5b837aba4490",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        580
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8c050ab1-94ac-4cde-a543-eaa669682a33",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        880,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-1002318065421",
+        "text": "Lỗi API tạo ticket CARESOFT",
+        "additionalFields": {}
+      },
+      "id": "27f8aa8c-e1ff-40d2-9c89-647b4fd6b218",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1100,
+        280
+      ],
+      "webhookId": "e0a4c4ed-0169-47ea-a521-ea41b63677ae",
+      "credentials": {
+        "telegramApi": {
+          "id": "2EcZ4GHvP7A5GK37",
+          "name": "Báo lỗi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "1e440651-1790-4c06-b91c-a29623f15439",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        880,
+        440
+      ],
+      "id": "e8fba96b-311e-4401-ad99-cbfc605f789e",
+      "name": "Webhook",
+      "webhookId": "1e440651-1790-4c06-b91c-a29623f15439"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d43bdbda-668f-4775-bf7c-34122b349f16",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "34d6c8416ab990d4be347bd9d4963440b5ae40b1d8168ac2eb8d09f6a7ac95ce"
+  },
+  "id": "wjWSCLtdrsHYn6sD",
+  "tags": []
+}

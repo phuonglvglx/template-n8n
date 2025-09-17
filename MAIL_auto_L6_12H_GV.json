@@ -1,0 +1,604 @@
+{
+  "name": "MAIL_auto_L6_12H_GV",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "37889967-4a9c-448d-9821-9e11b47d8921",
+              "name": "GV",
+              "value": "={{ $json.GV }}",
+              "type": "string"
+            },
+            {
+              "id": "b6f92b0d-a936-40b5-8962-e510e6c249bb",
+              "name": "HV",
+              "value": "={{ $json.HV }}",
+              "type": "string"
+            },
+            {
+              "id": "6bbd85b0-263f-44c2-816b-054559b335c7",
+              "name": " ĐỂ ĐỊNH DẠNG DD/MM/YYYY sai định dạnh miss ráng chịu",
+              "value": "={{ $json[' ĐỂ ĐỊNH DẠNG DD/MM/YYYY sai định dạnh miss ráng chịu'] }}",
+              "type": "string"
+            },
+            {
+              "id": "28926dbc-61bd-4675-bdc9-73db8df0b131",
+              "name": "Time",
+              "value": "={{ $json.Time }}",
+              "type": "string"
+            },
+            {
+              "id": "ea6e4c46-d73f-436f-8da7-f674096b4435",
+              "name": "Schedule",
+              "value": "={{ $json.Schedule }}",
+              "type": "string"
+            },
+            {
+              "id": "ce71a3a4-b445-46ee-a485-11c089cf79bf",
+              "name": "Giáo trình",
+              "value": "={{ $json['Giáo trình'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9a1d874c-2817-4300-b69c-af1293b1dd81",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        980,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            },
+            {
+              "triggerAtHour": 15
+            },
+            {
+              "triggerAtHour": 18
+            }
+          ]
+        }
+      },
+      "id": "2db916c0-5fca-40a5-acc2-0528c69b1e90",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        500,
+        360
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5dc15f83-4a22-4594-b211-2429e92d9bda",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        500,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-1002318065421",
+        "text": "Lỗi mail hãy check lại !!!",
+        "additionalFields": {}
+      },
+      "id": "981a6959-829d-42c7-8161-9ad5861827f0",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        760,
+        200
+      ],
+      "webhookId": "a77392b6-afdc-4996-86a2-646d102c62d1",
+      "credentials": {
+        "telegramApi": {
+          "id": "2EcZ4GHvP7A5GK37",
+          "name": "Báo lỗi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1JyDfBw55HB5BYpwI-vQ-dEIxcTWTRhF4DpV8uk51TFg/edit?gid=526928051#gid=526928051",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 526928051,
+          "mode": "list",
+          "cachedResultName": "L6 chốt 12h",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JyDfBw55HB5BYpwI-vQ-dEIxcTWTRhF4DpV8uk51TFg/edit#gid=526928051"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "checkĐiều kiện",
+              "lookupValue": "Đủ điều kiện"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "83375c11-19ee-48a0-b33b-4b9b53a94af3",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        760,
+        360
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1JyDfBw55HB5BYpwI-vQ-dEIxcTWTRhF4DpV8uk51TFg/edit?gid=526928051#gid=526928051",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 526928051,
+          "mode": "list",
+          "cachedResultName": "L6 chốt 12h",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JyDfBw55HB5BYpwI-vQ-dEIxcTWTRhF4DpV8uk51TFg/edit#gid=526928051"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDrowAuto": "={{ $('Google Sheets').item.json.IDrowAuto }}",
+            "Tình trạng gửi mail": "Đã gửi mail GV",
+            "LinkMail": "=https://mail.google.com/mail/u/0/#inbox/{{ $json.threadId }}"
+          },
+          "matchingColumns": [
+            "IDrowAuto"
+          ],
+          "schema": [
+            {
+              "id": " ",
+              "displayName": " ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": " ĐỂ ĐỊNH DẠNG DD/MM/YYYY sai định dạnh miss ráng chịu",
+              "displayName": " ĐỂ ĐỊNH DẠNG DD/MM/YYYY sai định dạnh miss ráng chịu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TTKD",
+              "displayName": "TTKD",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã ID",
+              "displayName": "Mã ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "HV",
+              "displayName": "HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TK ClassIn",
+              "displayName": "TK ClassIn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SĐT",
+              "displayName": "SĐT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": " Format",
+              "displayName": " Format",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lịch học\nSẮP XẾP LẦN LƯỢT",
+              "displayName": "Lịch học\nSẮP XẾP LẦN LƯỢT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV",
+              "displayName": "GV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Giáo trình",
+              "displayName": "Giáo trình",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số buổi",
+              "displayName": "Số buổi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TVV",
+              "displayName": "TVV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DOB",
+              "displayName": "DOB",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tình trạng gửi mail",
+              "displayName": "Tình trạng gửi mail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ĐỊa chỉ",
+              "displayName": "ĐỊa chỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Học phí",
+              "displayName": "Học phí",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note học phí",
+              "displayName": "Note học phí",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ưu đãi",
+              "displayName": "Ưu đãi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LinkMail",
+              "displayName": "LinkMail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "checkĐiều kiện",
+              "displayName": "checkĐiều kiện",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Schedule",
+              "displayName": "Schedule",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "EmaiGV",
+              "displayName": "EmaiGV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IDrowAuto",
+              "displayName": "IDrowAuto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Note L6 tối",
+              "displayName": "Note L6 tối",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Người xử lý",
+              "displayName": "Người xử lý",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tình trạng xử lý",
+              "displayName": "Tình trạng xử lý",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày xử lý\nDùng Ctrl ;",
+              "displayName": "Ngày xử lý\nDùng Ctrl ;",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "QTGV xác nhận lịch khai giảng",
+              "displayName": "QTGV xác nhận lịch khai giảng",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lý do không xác nhận",
+              "displayName": "Lý do không xác nhận",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6e05b627-e93d-4e89-bc01-dc49c76a19c7",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1380,
+        360
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Google Sheets').item.json.EmaiGV }}",
+        "subject": "[SpeakWell HOCMAI] - New regular student notification",
+        "message": "=<!DOCTYPE html>\n<html lang=\"en\">\n<p dir=\"ltr\" style=\"color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: small; line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\"><span style=\"border: none; display: inline-block; overflow: hidden; width: 696px; height: 99px;\"><img src=\"https://lh6.googleusercontent.com/SNDk2vXUEDF_16F0f_GCC6S4Bto4wLbA6BMMA2MOjtdxLhBgzkt842j6wP-e0trJ7bQU2ty9h-dVrKXG86gOPOZl4xE9kpI3XB_Gp770yGgq4XY2vog5xkwj6nB6SjtIte4tiP1aiwMds82gdOSxDqo\" width=\"696\" height=\"99\" style=\"margin-left: 0px; margin-top: 0px;\"></span></span></p><br style=\"color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: small;\"><div dir=\"ltr\" align=\"left\" style=\"color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: small; margin-left: 0pt;\"><table style=\"border: none; border-collapse: collapse; table-layout: fixed; width: 697.7px;\"><colgroup><col></colgroup><tbody><tr style=\"height: 0pt;\"><td style=\"margin: 0px; border-width: 1pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(249, 203, 156); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Dear teacher, {{ $json.GV }}</span></p><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">This email informs you about class with the new student.</span></p></td></tr></tbody></table></div><br style=\"color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: small;\"><div dir=\"ltr\" align=\"left\" style=\"color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: small; margin-left: 0pt;\"><table style=\"border: none; border-collapse: collapse;\"><colgroup><col width=\"141\"><col width=\"195\"><col width=\"153\"><col width=\"207\"></colgroup><tbody><tr style=\"height: 20.92pt;\"><td colspan=\"4\" style=\"margin: 0px; border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(255, 153, 0); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; text-align: center; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 14pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Information</span></p></td></tr><tr style=\"height: 26.118pt;\"><td style=\"margin: 0px; border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Student name</span></p></td><td colspan=\"3\" style=\"margin: 0px; border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.HV }}</span></p></td></tr><tr style=\"height: 0pt;\"><td style=\"margin: 0px; border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">First lesson</span></p></td><td style=\"margin: 0px; border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json[' ĐỂ ĐỊNH DẠNG DD/MM/YYYY sai định dạnh miss ráng chịu'] }}</span></p></td><td style=\"margin: 0px; border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Time</span></p></td><td style=\"margin: 0px; border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Time }}</span></p></td></tr><tr style=\"height: 23pt;\"><td style=\"margin: 0px; border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Schedule</span></p></td><td colspan=\"3\" style=\"margin: 0px; border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json.Schedule }}</span></p></td></tr><tr style=\"height: 25.627pt;\"><td style=\"margin: 0px; border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Text book</span></p></td><td colspan=\"3\" style=\"margin: 0px; border-width: 0.5pt; border-style: solid; border-color: rgb(164, 194, 244); vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\"> {{ $json['Giáo trình'] }}</span></p></td></tr></tbody></table></div><br style=\"color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: small;\"><div dir=\"ltr\" align=\"left\" style=\"color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: small; margin-left: 0pt;\"><table style=\"border: none; border-collapse: collapse;\"><colgroup><col width=\"202\"><col width=\"494\"></colgroup><tbody><tr style=\"height: 22pt;\"><td colspan=\"2\" style=\"margin: 0px; vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Please note and prepare for your first lesson. Thank you.</span></p></td></tr><tr style=\"height: 120.72pt;\"><td colspan=\"2\" style=\"margin: 0px; vertical-align: top; background-color: rgb(252, 229, 205); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\"></span></p><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">- Email: <a href=\"mailto:teacher@speakwell.vn\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">teacher@speakwell.vn</a></span></p><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve; target=\"_blank\" style=\"color: rgb(17, 85, 204);\"></a></span></p></td></tr></tbody></table></div><br style=\"color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: small;\"><div dir=\"ltr\" align=\"left\" style=\"color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: small; margin-left: 0pt;\"><table style=\"border: none; border-collapse: collapse; table-layout: fixed; width: 697.7px;\"><colgroup><col></colgroup><tbody><tr style=\"height: 0pt;\"><td style=\"margin: 0px; vertical-align: top; background-color: rgb(249, 203, 156); padding: 5pt; overflow: hidden;\"><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">Best regards,&nbsp;</span></p><br><p dir=\"ltr\" style=\"line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;\"><span style=\"font-size: 12pt; font-family: Arial; color: rgb(28, 69, 135); background-color: transparent; font-weight: 700; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space-collapse: preserve;\">SpeakWell team</span></p></td></tr></tbody></table></div>\n\n</html>",
+        "options": {
+          "senderName": " ICAN OPERATION MANAGEMENT"
+        }
+      },
+      "id": "9a893d3c-a0f5-4683-9b49-6d2febd1b410",
+      "name": "Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1180,
+        360
+      ],
+      "webhookId": "07fb766f-50ba-41a7-b71a-bca167df2355",
+      "executeOnce": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gusMvgfyKljbnXz1",
+          "name": "Gmail vhc@ican.vn"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4042d2c9-78b1-43da-900c-f39bbfdf443a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "34d6c8416ab990d4be347bd9d4963440b5ae40b1d8168ac2eb8d09f6a7ac95ce"
+  },
+  "id": "OyUKLoYSZ9QJ3VUp",
+  "tags": []
+}

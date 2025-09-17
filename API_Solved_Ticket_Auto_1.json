@@ -1,0 +1,650 @@
+{
+  "name": "API_Solved_Ticket_Auto 1",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.noco-erp.com/webhook/07b5f45d-f806-42d4-9e71-315df19f2daa",
+        "options": {}
+      },
+      "id": "2b8b2961-f2e0-45c5-b4f4-70a8a676668f",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1820,
+        740
+      ],
+      "executeOnce": true,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "amount": 3,
+        "unit": "minutes"
+      },
+      "id": "552fcdea-2dd3-45c3-a7e3-7d20e6b256cc",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1440,
+        740
+      ],
+      "webhookId": "5a4f0862-725c-4818-8110-73955a14277c",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Gộp toàn bộ dữ liệu từ items vào một object JSON duy nhất\nreturn [{\n    mergedData: items.map(item => item.json)\n}];\n"
+      },
+      "id": "835392e1-ea3d-4d69-b44b-a06f8457ee6d",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1640,
+        740
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "id": "a451e3e0-4060-452f-ba66-9def4db8cd78",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        440,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-1002318065421",
+        "text": "Lỗi  Ticket_solved check lại !!!",
+        "additionalFields": {}
+      },
+      "id": "822cdff7-2fd0-4291-bff4-5a5f547f1cf8",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        620,
+        540
+      ],
+      "webhookId": "fcae1e85-bfd3-4592-8794-f1408764f5ad",
+      "credentials": {
+        "telegramApi": {
+          "id": "2EcZ4GHvP7A5GK37",
+          "name": "Báo lỗi"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1qSI9xi4mMzSe8Kau-wyrw9EvKolqx7djQ_z9E8lCePQ/edit?gid=1046593970#gid=1046593970",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1373581937,
+          "mode": "list",
+          "cachedResultName": "HV xin OFF mới",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1qSI9xi4mMzSe8Kau-wyrw9EvKolqx7djQ_z9E8lCePQ/edit#gid=1373581937"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Checksolved",
+              "lookupValue": "ok"
+            },
+            {
+              "lookupColumn": "Trạng thái ticket"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ce7542f2-31c0-49c5-9b69-825e12fa5487",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        660,
+        740
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1qSI9xi4mMzSe8Kau-wyrw9EvKolqx7djQ_z9E8lCePQ/edit?gid=1046593970#gid=1046593970",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1373581937,
+          "mode": "list",
+          "cachedResultName": "HV xin OFF mới",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1qSI9xi4mMzSe8Kau-wyrw9EvKolqx7djQ_z9E8lCePQ/edit#gid=1373581937"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Google Sheets').item.json.row_number }}",
+            "Trạng thái ticket": "Solved"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Ngày điền form",
+              "displayName": "Ngày điền form",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phân loại",
+              "displayName": "Phân loại",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SDT",
+              "displayName": "SDT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên",
+              "displayName": "Tên",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lý do",
+              "displayName": "Lý do",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày nghỉ",
+              "displayName": "Ngày nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái ticket",
+              "displayName": "Trạng thái ticket",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "check",
+              "displayName": "check",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái xử lý",
+              "displayName": "Trạng thái xử lý",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã HV",
+              "displayName": "Mã HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lịch học",
+              "displayName": "Lịch học",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã lớp",
+              "displayName": "Mã lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ngày nghỉ (fx)",
+              "displayName": "Ngày nghỉ (fx)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "QUERY({QUERY(Quantd!R2:AK;\"select D,E,F,G,H,I,P,Q,S,T,U,V,W where I is not null\";0);QUERY(Quantd!R2:AK;\"select D,E,F,G,H,J,P,Q,S,T,U,V,W where J is not null\";0);QUERY(Quantd!R2:AK;\"select D,E,F,G,H,K,P,Q,S,T,U,V,W where K is not null\";0);QUERY(Quantd!R2:AK;\"select D,E,F,G,H,L,P,Q,S,T,U,V,W where L is not null\";0);QUERY(Quantd!R2:AK;\"select D,E,F,G,H,M,P,Q,S,T,U,V,W where M is not null\";0);QUERY(Quantd!R2:AK;\"select D,E,F,G,H,N,P,Q,S,T,U,V,W where N is not null\";0);QUERY(Quantd!R2:AK;\"select D,E,F,G,H,O,P,Q,S,T,U,V,W where O is not null\";0)};\"select * ORDER BY Col1 ASC\")",
+              "displayName": "QUERY({QUERY(Quantd!R2:AK;\"select D,E,F,G,H,I,P,Q,S,T,U,V,W where I is not null\";0);QUERY(Quantd!R2:AK;\"select D,E,F,G,H,J,P,Q,S,T,U,V,W where J is not null\";0);QUERY(Quantd!R2:AK;\"select D,E,F,G,H,K,P,Q,S,T,U,V,W where K is not null\";0);QUERY(Quantd!R2:AK;\"select D,E,F,G,H,L,P,Q,S,T,U,V,W where L is not null\";0);QUERY(Quantd!R2:AK;\"select D,E,F,G,H,M,P,Q,S,T,U,V,W where M is not null\";0);QUERY(Quantd!R2:AK;\"select D,E,F,G,H,N,P,Q,S,T,U,V,W where N is not null\";0);QUERY(Quantd!R2:AK;\"select D,E,F,G,H,O,P,Q,S,T,U,V,W where O is not null\";0)};\"select * ORDER BY Col1 ASC\")",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d7019f4c-ce4c-48f8-a17a-41681fb2c1ba",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1040,
+        740
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.caresoft.vn/GalaxyHN/api/v1/tickets/{{ $json.IDticket }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer l96RBHiEWhOFvTo"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"ticket\": {\n        \"ticket_status\":\"solved\",\n        \"ticket_comment\": {\n            \"body\": \"Auto solved\",\n            \"is_public\": 1,\n            \"author_id\": 187910425\n        },\n        \"custom_fields\": [\n            {\n                \"id\": \"6170\",\n                \"value\": \"{{ $json['ID BOS'] }}\"\n          \n            }\n        ]\n     }\n}",
+        "options": {
+          "redirect": {}
+        }
+      },
+      "id": "dca20b12-3ae5-4989-9e62-f5bff1c6c3f1",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        860,
+        740
+      ],
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9e3448af-0508-43f7-ab17-eb57ea86a9c9",
+              "leftValue": "={{ $json['Trạng thái ticket'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "4b1b3664-27ec-4b70-a74f-d00d69c23eea",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        860,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9e3448af-0508-43f7-ab17-eb57ea86a9c9",
+              "leftValue": "={{ $json['ID BOS'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "73859650-359b-4fc8-8d5d-2216499bba71",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        860,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "id": "ce165070-bfa4-4631-ba90-5ff4e4046717",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        800,
+        540
+      ],
+      "webhookId": "5a4f0862-725c-4818-8110-73955a14277c",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.noco-erp.com/webhook/07b5f45d-f806-42d4-9e71-315df19f2daa",
+        "options": {}
+      },
+      "id": "e192289c-3347-43ed-8a1e-46296118749a",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1020,
+        540
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "id": "919328ac-c66e-4f51-9e12-53f328270ffb",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1260,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "id": "07c25181-94cc-4c32-8ad9-f18148f91e3a",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        480,
+        740
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "9485f702-3806-4118-be30-1c7cdbdc8679",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "34d6c8416ab990d4be347bd9d4963440b5ae40b1d8168ac2eb8d09f6a7ac95ce"
+  },
+  "id": "PTSbpk5Ezw8qrtag",
+  "tags": []
+}

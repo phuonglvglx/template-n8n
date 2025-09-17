@@ -1,0 +1,3178 @@
+{
+  "name": "ZNS_BÁO_TRÁM_16H",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.caresoft.vn/GalaxyHN/api/v1/zalo/zns",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer l96RBHiEWhOFvTo"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"zns\": {\n        \"phone\": \"0{{ $json['Số điện thoại'] }}\",\n        \"template_id\": 8690,\n      \"params\": {\n          \"Name\":\"{{ $json['Tên HV'] }}\",\n          \"Student_ID\":\"{{ $json['ID HV'] }}\",\n          \"date\":\"{{ $json['Ngày'] }}\",\n          \"GV\":\"{{ $json['GV nghỉ'] }}\"\n      }\n    }\n}",
+        "options": {
+          "redirect": {}
+        }
+      },
+      "id": "d412d62e-d8bd-46cb-bfb3-8ccbcdd02170",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1620,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit?gid=1310916364#gid=1310916364",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1310916364,
+          "mode": "list",
+          "cachedResultName": "Trám",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit#gid=1310916364"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "CheckDK",
+              "lookupValue": "ZNS 16h30"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f355214a-ee2b-45d5-8ce8-6d991d75084b",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1260,
+        460
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit?gid=1310916364#gid=1310916364",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1310916364,
+          "mode": "list",
+          "cachedResultName": "Trám",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit#gid=1310916364"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDRow": "={{ $('Google Sheets').item.json.IDRow }}",
+            "LinkZNS": "=https://web22.caresoft.vn/GalaxyHN#/index?type=ticket&id={{ $json.ticket.ticket_id }}",
+            "Trạng thái gửi": "Thành công"
+          },
+          "matchingColumns": [
+            "IDRow"
+          ],
+          "schema": [
+            {
+              "id": "Ngày",
+              "displayName": "Ngày",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sản phẩm\n( Bắt buộc )",
+              "displayName": "Sản phẩm\n( Bắt buộc )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check hv VIP",
+              "displayName": "Check hv VIP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trám tiếp hay nghỉ",
+              "displayName": "Trám tiếp hay nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã lớp",
+              "displayName": "Mã lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID HV",
+              "displayName": "ID HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên HV",
+              "displayName": "Tên HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số điện thoại",
+              "displayName": "Số điện thoại",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số điện thoại 2\n(Cột CT Cấm điền)",
+              "displayName": "Số điện thoại 2\n(Cột CT Cấm điền)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV nghỉ",
+              "displayName": "GV nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ca học",
+              "displayName": "Ca học",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Loại lớp",
+              "displayName": "Loại lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lý do nghỉ",
+              "displayName": "Lý do nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Chi tiết lý do",
+              "displayName": "Chi tiết lý do",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID BOS",
+              "displayName": "ID BOS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check HV xin nghỉ\n(Cột CT Cấm điền)",
+              "displayName": "Check HV xin nghỉ\n(Cột CT Cấm điền)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CTV",
+              "displayName": "CTV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV trám",
+              "displayName": "GV trám",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV xin nghỉ",
+              "displayName": "GV xin nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CA TRÁM",
+              "displayName": "CA TRÁM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái liên hệ",
+              "displayName": "Trạng thái liên hệ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hủy lớp\n( BOS / CLassin )",
+              "displayName": "Hủy lớp\n( BOS / CLassin )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Đổi lớp\n( BOS / CLassin )",
+              "displayName": "Đổi lớp\n( BOS / CLassin )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gửi tin nhắn (Nếu k liên lạc được)",
+              "displayName": "Gửi tin nhắn (Nếu k liên lạc được)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link gọi",
+              "displayName": "Link gọi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thời gian lên đơn",
+              "displayName": "Thời gian lên đơn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thời gian hoàn thành",
+              "displayName": "Thời gian hoàn thành",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID Bos",
+              "displayName": "ID Bos",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LinkZNS",
+              "displayName": "LinkZNS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái gửi",
+              "displayName": "Trạng thái gửi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CheckDK",
+              "displayName": "CheckDK",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IDRow",
+              "displayName": "IDRow",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Concatenate(hằng)",
+              "displayName": "Concatenate(hằng)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "08116af6-483e-4646-8570-b1261c91896f",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2200,
+        380
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "maxItems": 15
+      },
+      "id": "adce5748-736b-4978-99e7-fc8f5521bc2a",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.caresoft.vn/GalaxyHN/api/v1/tickets/{{ $json.ticket.ticketId }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer l96RBHiEWhOFvTo"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {}
+        }
+      },
+      "id": "94aa46e9-bc30-46be-a72a-4d7f0476c9b1",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1800,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "85c1a817-a438-4d8f-886b-18c6edf101b0",
+              "leftValue": "={{ $json.ticket.comments[0].addition_details }}",
+              "rightValue": "Thành công",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "ada0dabf-4bac-41d9-bf7e-afa35065a8b8",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1980,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit?gid=1310916364#gid=1310916364",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1310916364,
+          "mode": "list",
+          "cachedResultName": "Trám",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit#gid=1310916364"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDRow": "={{ $('Google Sheets').item.json.IDRow }}",
+            "LinkZNS": "=https://web22.caresoft.vn/GalaxyHN#/index?type=ticket&id={{ $json.ticket.ticket_id }}",
+            "Trạng thái gửi": "Thất bại"
+          },
+          "matchingColumns": [
+            "IDRow"
+          ],
+          "schema": [
+            {
+              "id": "Ngày",
+              "displayName": "Ngày",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sản phẩm\n( Bắt buộc )",
+              "displayName": "Sản phẩm\n( Bắt buộc )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check hv VIP",
+              "displayName": "Check hv VIP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trám tiếp hay nghỉ",
+              "displayName": "Trám tiếp hay nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã lớp",
+              "displayName": "Mã lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID HV",
+              "displayName": "ID HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên HV",
+              "displayName": "Tên HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số điện thoại",
+              "displayName": "Số điện thoại",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số điện thoại 2\n(Cột CT Cấm điền)",
+              "displayName": "Số điện thoại 2\n(Cột CT Cấm điền)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV nghỉ",
+              "displayName": "GV nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ca học",
+              "displayName": "Ca học",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Loại lớp",
+              "displayName": "Loại lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lý do nghỉ",
+              "displayName": "Lý do nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Chi tiết lý do",
+              "displayName": "Chi tiết lý do",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID BOS",
+              "displayName": "ID BOS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check HV xin nghỉ\n(Cột CT Cấm điền)",
+              "displayName": "Check HV xin nghỉ\n(Cột CT Cấm điền)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CTV",
+              "displayName": "CTV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV trám",
+              "displayName": "GV trám",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV xin nghỉ",
+              "displayName": "GV xin nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CA TRÁM",
+              "displayName": "CA TRÁM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái liên hệ",
+              "displayName": "Trạng thái liên hệ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hủy lớp\n( BOS / CLassin )",
+              "displayName": "Hủy lớp\n( BOS / CLassin )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Đổi lớp\n( BOS / CLassin )",
+              "displayName": "Đổi lớp\n( BOS / CLassin )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gửi tin nhắn (Nếu k liên lạc được)",
+              "displayName": "Gửi tin nhắn (Nếu k liên lạc được)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link gọi",
+              "displayName": "Link gọi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thời gian lên đơn",
+              "displayName": "Thời gian lên đơn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thời gian hoàn thành",
+              "displayName": "Thời gian hoàn thành",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID Bos",
+              "displayName": "ID Bos",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LinkZNS",
+              "displayName": "LinkZNS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái gửi",
+              "displayName": "Trạng thái gửi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CheckDK",
+              "displayName": "CheckDK",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IDRow",
+              "displayName": "IDRow",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Concatenate(hằng)",
+              "displayName": "Concatenate(hằng)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e21760f7-5b8a-4b9c-ae97-0d78dbe4f23d",
+      "name": "Google Sheets2",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2200,
+        520
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "b00e21cc-2ff9-4e0d-9f3e-d42f084e05e4",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-1002318065421",
+        "text": "Lỗi  xử lý  ZNS trám 11h check lại !!!",
+        "additionalFields": {}
+      },
+      "id": "9e10da6a-ba08-4ecf-8130-4005e32f1f0a",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1260,
+        240
+      ],
+      "webhookId": "74846fa7-597c-4933-80a0-bfd6230a087c",
+      "credentials": {
+        "telegramApi": {
+          "id": "2EcZ4GHvP7A5GK37",
+          "name": "Báo lỗi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.caresoft.vn/GalaxyHN/api/v1/zalo/zns",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer l96RBHiEWhOFvTo"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"zns\": {\n        \"phone\": \"+84{{ $json['Số điện thoại'] }}\",\n        \"template_id\": 8690,\n      \"params\": {\n          \"Name\":\"{{ $json['Tên HV'] }}\",\n          \"Student_ID\":\"{{ $json['ID HV'] }}\",\n          \"date\":\"{{ $json['Ngày'] }}\",\n          \"GV\":\"{{ $json['GV nghỉ'] }}\"\n      }\n    }\n}",
+        "options": {
+          "redirect": {}
+        }
+      },
+      "id": "1c0f49f4-ae4b-4087-9651-63fef8249e4c",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1620,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit?gid=1310916364#gid=1310916364",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1310916364,
+          "mode": "list",
+          "cachedResultName": "Trám",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit#gid=1310916364"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Trạng thái gửi",
+              "lookupValue": "Thất bại"
+            },
+            {
+              "lookupColumn": "Trạng thái liên hệ",
+              "lookupValue": "Học"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cdeeafb8-9ba2-4e1c-995f-4a07a0abe76c",
+      "name": "Google Sheets3",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1260,
+        760
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit?gid=1310916364#gid=1310916364",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1310916364,
+          "mode": "list",
+          "cachedResultName": "Trám",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit#gid=1310916364"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDRow": "={{ $('Google Sheets3').item.json.IDRow }}",
+            "LinkZNS": "=https://web22.caresoft.vn/GalaxyHN#/index?type=ticket&id={{ $json.ticket.ticket_id }}",
+            "Trạng thái gửi": "Thành công"
+          },
+          "matchingColumns": [
+            "IDRow"
+          ],
+          "schema": [
+            {
+              "id": "Ngày",
+              "displayName": "Ngày",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sản phẩm\n( Bắt buộc )",
+              "displayName": "Sản phẩm\n( Bắt buộc )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check hv VIP",
+              "displayName": "Check hv VIP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trám tiếp hay nghỉ",
+              "displayName": "Trám tiếp hay nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã lớp",
+              "displayName": "Mã lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID HV",
+              "displayName": "ID HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên HV",
+              "displayName": "Tên HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số điện thoại",
+              "displayName": "Số điện thoại",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số điện thoại 2\n(Cột CT Cấm điền)",
+              "displayName": "Số điện thoại 2\n(Cột CT Cấm điền)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV nghỉ",
+              "displayName": "GV nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ca học",
+              "displayName": "Ca học",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Loại lớp",
+              "displayName": "Loại lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lý do nghỉ",
+              "displayName": "Lý do nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Chi tiết lý do",
+              "displayName": "Chi tiết lý do",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID BOS",
+              "displayName": "ID BOS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check HV xin nghỉ\n(Cột CT Cấm điền)",
+              "displayName": "Check HV xin nghỉ\n(Cột CT Cấm điền)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CTV",
+              "displayName": "CTV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV trám",
+              "displayName": "GV trám",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV xin nghỉ",
+              "displayName": "GV xin nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CA TRÁM",
+              "displayName": "CA TRÁM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái liên hệ",
+              "displayName": "Trạng thái liên hệ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hủy lớp\n( BOS / CLassin )",
+              "displayName": "Hủy lớp\n( BOS / CLassin )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Đổi lớp\n( BOS / CLassin )",
+              "displayName": "Đổi lớp\n( BOS / CLassin )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gửi tin nhắn (Nếu k liên lạc được)",
+              "displayName": "Gửi tin nhắn (Nếu k liên lạc được)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link gọi",
+              "displayName": "Link gọi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thời gian lên đơn",
+              "displayName": "Thời gian lên đơn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thời gian hoàn thành",
+              "displayName": "Thời gian hoàn thành",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID Bos",
+              "displayName": "ID Bos",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LinkZNS",
+              "displayName": "LinkZNS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái gửi",
+              "displayName": "Trạng thái gửi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CheckDK",
+              "displayName": "CheckDK",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IDRow",
+              "displayName": "IDRow",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Concatenate(hằng)",
+              "displayName": "Concatenate(hằng)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7802d94b-aa18-4ae7-9cc7-6d3fc8bb643f",
+      "name": "Google Sheets4",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2200,
+        680
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "maxItems": 15
+      },
+      "id": "dffce216-8b66-4238-96b1-db857b3001d5",
+      "name": "Limit1",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.caresoft.vn/GalaxyHN/api/v1/tickets/{{ $json.ticket.ticketId }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer l96RBHiEWhOFvTo"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {}
+        }
+      },
+      "id": "31b5ec03-07e0-4b17-b340-a2d05d423402",
+      "name": "HTTP Request3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1800,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "85c1a817-a438-4d8f-886b-18c6edf101b0",
+              "leftValue": "={{ $json.ticket.comments[0].addition_details }}",
+              "rightValue": "Thành công",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "bdc58f74-e914-4249-8e1f-91ad878d90e7",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1980,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit?gid=1310916364#gid=1310916364",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1310916364,
+          "mode": "list",
+          "cachedResultName": "Trám",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit#gid=1310916364"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDRow": "={{ $('Google Sheets3').item.json.IDRow }}",
+            "LinkZNS": "=https://web22.caresoft.vn/GalaxyHN#/index?type=ticket&id={{ $json.ticket.ticket_id }}",
+            "Trạng thái gửi": "Thất bại"
+          },
+          "matchingColumns": [
+            "IDRow"
+          ],
+          "schema": [
+            {
+              "id": "Ngày",
+              "displayName": "Ngày",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sản phẩm\n( Bắt buộc )",
+              "displayName": "Sản phẩm\n( Bắt buộc )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check hv VIP",
+              "displayName": "Check hv VIP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trám tiếp hay nghỉ",
+              "displayName": "Trám tiếp hay nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã lớp",
+              "displayName": "Mã lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID HV",
+              "displayName": "ID HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên HV",
+              "displayName": "Tên HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số điện thoại",
+              "displayName": "Số điện thoại",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số điện thoại 2\n(Cột CT Cấm điền)",
+              "displayName": "Số điện thoại 2\n(Cột CT Cấm điền)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV nghỉ",
+              "displayName": "GV nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ca học",
+              "displayName": "Ca học",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Loại lớp",
+              "displayName": "Loại lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lý do nghỉ",
+              "displayName": "Lý do nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Chi tiết lý do",
+              "displayName": "Chi tiết lý do",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID BOS",
+              "displayName": "ID BOS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check HV xin nghỉ\n(Cột CT Cấm điền)",
+              "displayName": "Check HV xin nghỉ\n(Cột CT Cấm điền)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CTV",
+              "displayName": "CTV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV trám",
+              "displayName": "GV trám",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV xin nghỉ",
+              "displayName": "GV xin nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CA TRÁM",
+              "displayName": "CA TRÁM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái liên hệ",
+              "displayName": "Trạng thái liên hệ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hủy lớp\n( BOS / CLassin )",
+              "displayName": "Hủy lớp\n( BOS / CLassin )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Đổi lớp\n( BOS / CLassin )",
+              "displayName": "Đổi lớp\n( BOS / CLassin )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gửi tin nhắn (Nếu k liên lạc được)",
+              "displayName": "Gửi tin nhắn (Nếu k liên lạc được)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link gọi",
+              "displayName": "Link gọi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thời gian lên đơn",
+              "displayName": "Thời gian lên đơn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thời gian hoàn thành",
+              "displayName": "Thời gian hoàn thành",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID Bos",
+              "displayName": "ID Bos",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LinkZNS",
+              "displayName": "LinkZNS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái gửi",
+              "displayName": "Trạng thái gửi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CheckDK",
+              "displayName": "CheckDK",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IDRow",
+              "displayName": "IDRow",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Concatenate(hằng)",
+              "displayName": "Concatenate(hằng)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a181efd4-af56-40f6-b6fa-88237d28d73a",
+      "name": "Google Sheets5",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2200,
+        820
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.caresoft.vn/GalaxyHN/api/v1/zalo/zns",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer l96RBHiEWhOFvTo"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"zns\": {\n        \"phone\": \"+{{ $json['Số điện thoại'] }}\",\n        \"template_id\": 8690,\n      \"params\": {\n          \"Name\":\"{{ $json['Tên HV'] }}\",\n          \"Student_ID\":\"{{ $json['ID HV'] }}\",\n          \"date\":\"{{ $json['Ngày'] }}\",\n          \"GV\":\"{{ $json['GV nghỉ'] }}\"\n      }\n    }\n}",
+        "options": {
+          "redirect": {}
+        }
+      },
+      "id": "b8b412de-7585-4e03-8f1d-f3db6da0606e",
+      "name": "HTTP Request4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1620,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit?gid=1310916364#gid=1310916364",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1310916364,
+          "mode": "list",
+          "cachedResultName": "Trám",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit#gid=1310916364"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Trạng thái gửi",
+              "lookupValue": "Thất bại"
+            },
+            {
+              "lookupColumn": "Trạng thái liên hệ",
+              "lookupValue": "Học"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fd238312-44c9-4417-bd8b-f4a293b2f1e2",
+      "name": "Google Sheets6",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1260,
+        1060
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit?gid=1310916364#gid=1310916364",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1310916364,
+          "mode": "list",
+          "cachedResultName": "Trám",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit#gid=1310916364"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDRow": "={{ $('Google Sheets6').item.json.IDRow }}",
+            "LinkZNS": "=https://web22.caresoft.vn/GalaxyHN#/index?type=ticket&id={{ $json.ticket.ticket_id }}",
+            "Trạng thái gửi": "Thành công"
+          },
+          "matchingColumns": [
+            "IDRow"
+          ],
+          "schema": [
+            {
+              "id": "Ngày",
+              "displayName": "Ngày",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sản phẩm\n( Bắt buộc )",
+              "displayName": "Sản phẩm\n( Bắt buộc )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check hv VIP",
+              "displayName": "Check hv VIP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trám tiếp hay nghỉ",
+              "displayName": "Trám tiếp hay nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã lớp",
+              "displayName": "Mã lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID HV",
+              "displayName": "ID HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên HV",
+              "displayName": "Tên HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số điện thoại",
+              "displayName": "Số điện thoại",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số điện thoại 2\n(Cột CT Cấm điền)",
+              "displayName": "Số điện thoại 2\n(Cột CT Cấm điền)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV nghỉ",
+              "displayName": "GV nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ca học",
+              "displayName": "Ca học",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Loại lớp",
+              "displayName": "Loại lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lý do nghỉ",
+              "displayName": "Lý do nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Chi tiết lý do",
+              "displayName": "Chi tiết lý do",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID BOS",
+              "displayName": "ID BOS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check HV xin nghỉ\n(Cột CT Cấm điền)",
+              "displayName": "Check HV xin nghỉ\n(Cột CT Cấm điền)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CTV",
+              "displayName": "CTV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV trám",
+              "displayName": "GV trám",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV xin nghỉ",
+              "displayName": "GV xin nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CA TRÁM",
+              "displayName": "CA TRÁM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái liên hệ",
+              "displayName": "Trạng thái liên hệ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hủy lớp\n( BOS / CLassin )",
+              "displayName": "Hủy lớp\n( BOS / CLassin )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Đổi lớp\n( BOS / CLassin )",
+              "displayName": "Đổi lớp\n( BOS / CLassin )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gửi tin nhắn (Nếu k liên lạc được)",
+              "displayName": "Gửi tin nhắn (Nếu k liên lạc được)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link gọi",
+              "displayName": "Link gọi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thời gian lên đơn",
+              "displayName": "Thời gian lên đơn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thời gian hoàn thành",
+              "displayName": "Thời gian hoàn thành",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID Bos",
+              "displayName": "ID Bos",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LinkZNS",
+              "displayName": "LinkZNS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái gửi",
+              "displayName": "Trạng thái gửi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CheckDK",
+              "displayName": "CheckDK",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IDRow",
+              "displayName": "IDRow",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Concatenate(hằng)",
+              "displayName": "Concatenate(hằng)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7ae26e07-3c15-41a9-b009-aa89c1d5ba70",
+      "name": "Google Sheets7",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2200,
+        980
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "maxItems": 15
+      },
+      "id": "b021340c-efb3-4c69-9936-d53c801c2145",
+      "name": "Limit2",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.caresoft.vn/GalaxyHN/api/v1/tickets/{{ $json.ticket.ticketId }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer l96RBHiEWhOFvTo"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {}
+        }
+      },
+      "id": "567fd000-831f-417b-8f2f-5a072fa463e3",
+      "name": "HTTP Request5",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1800,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "85c1a817-a438-4d8f-886b-18c6edf101b0",
+              "leftValue": "={{ $json.ticket.comments[0].addition_details }}",
+              "rightValue": "Thành công",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b4daa68f-cf6f-4f4a-b9f2-528e234f7f36",
+      "name": "If2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1980,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit?gid=1310916364#gid=1310916364",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1310916364,
+          "mode": "list",
+          "cachedResultName": "Trám",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_qUpmmGaGa5aUT7ZJvUe9C05X_ecchUYLJrJR_-6xYs/edit#gid=1310916364"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDRow": "={{ $('Google Sheets6').item.json.IDRow }}",
+            "LinkZNS": "=https://web22.caresoft.vn/GalaxyHN#/index?type=ticket&id={{ $json.ticket.ticket_id }}",
+            "Trạng thái gửi": "Thất bại"
+          },
+          "matchingColumns": [
+            "IDRow"
+          ],
+          "schema": [
+            {
+              "id": "Ngày",
+              "displayName": "Ngày",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sản phẩm\n( Bắt buộc )",
+              "displayName": "Sản phẩm\n( Bắt buộc )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check hv VIP",
+              "displayName": "Check hv VIP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trám tiếp hay nghỉ",
+              "displayName": "Trám tiếp hay nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Mã lớp",
+              "displayName": "Mã lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID HV",
+              "displayName": "ID HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tên HV",
+              "displayName": "Tên HV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số điện thoại",
+              "displayName": "Số điện thoại",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Số điện thoại 2\n(Cột CT Cấm điền)",
+              "displayName": "Số điện thoại 2\n(Cột CT Cấm điền)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV nghỉ",
+              "displayName": "GV nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ca học",
+              "displayName": "Ca học",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Loại lớp",
+              "displayName": "Loại lớp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lý do nghỉ",
+              "displayName": "Lý do nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Chi tiết lý do",
+              "displayName": "Chi tiết lý do",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID BOS",
+              "displayName": "ID BOS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Check HV xin nghỉ\n(Cột CT Cấm điền)",
+              "displayName": "Check HV xin nghỉ\n(Cột CT Cấm điền)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CTV",
+              "displayName": "CTV",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV trám",
+              "displayName": "GV trám",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GV xin nghỉ",
+              "displayName": "GV xin nghỉ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CA TRÁM",
+              "displayName": "CA TRÁM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái liên hệ",
+              "displayName": "Trạng thái liên hệ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hủy lớp\n( BOS / CLassin )",
+              "displayName": "Hủy lớp\n( BOS / CLassin )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Đổi lớp\n( BOS / CLassin )",
+              "displayName": "Đổi lớp\n( BOS / CLassin )",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gửi tin nhắn (Nếu k liên lạc được)",
+              "displayName": "Gửi tin nhắn (Nếu k liên lạc được)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link gọi",
+              "displayName": "Link gọi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thời gian lên đơn",
+              "displayName": "Thời gian lên đơn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Thời gian hoàn thành",
+              "displayName": "Thời gian hoàn thành",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID Bos",
+              "displayName": "ID Bos",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LinkZNS",
+              "displayName": "LinkZNS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Trạng thái gửi",
+              "displayName": "Trạng thái gửi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Time",
+              "displayName": "Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CheckDK",
+              "displayName": "CheckDK",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IDRow",
+              "displayName": "IDRow",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Concatenate(hằng)",
+              "displayName": "Concatenate(hằng)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "20c6aec7-e837-48a3-9fba-d752446ae55e",
+      "name": "Google Sheets8",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2200,
+        1120
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yOwsBzfxDgNg9Gqd",
+          "name": "Quantd"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "60f18bcb-e61b-4c44-bcfb-5a77d48efc05",
+      "name": "Merge2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2420,
+        1040
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a62a2555-5ddf-4f1d-b223-035cae86e6b7",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2420,
+        440
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f5ad65b4-5f2a-422c-8617-677295de4719",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2420,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 23
+            },
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 24
+            },
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 25
+            },
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 26
+            },
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 27
+            },
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 28
+            },
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 29
+            },
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 30
+            },
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 31
+            },
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 32
+            },
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 33
+            }
+          ]
+        }
+      },
+      "id": "add4df58-6928-445e-9ff3-234171f84b01",
+      "name": "Schedule Trigger3",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1060,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 34
+            },
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 35
+            }
+          ]
+        }
+      },
+      "id": "255dd118-9478-437b-9509-a9cbb4294cdf",
+      "name": "Schedule Trigger1",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1060,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 16,
+              "triggerAtMinute": 36
+            }
+          ]
+        }
+      },
+      "id": "ec9fc612-6ad3-4d5c-b952-1dc99c2f5e00",
+      "name": "Schedule Trigger2",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1060,
+        1060
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets3": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets4": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Sheets5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets5": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets6": {
+      "main": [
+        [
+          {
+            "node": "Limit2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets7": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request5": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets7",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Sheets8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets8": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger3": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ec7762a5-ff18-48d7-9e1e-cac240800932",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "34d6c8416ab990d4be347bd9d4963440b5ae40b1d8168ac2eb8d09f6a7ac95ce"
+  },
+  "id": "63B8ybSSr0ZHk2SH",
+  "tags": []
+}
